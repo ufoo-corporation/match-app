@@ -5,7 +5,15 @@
  */
 package vue;
 
-import javax.swing.JOptionPane;
+import java.io.FileNotFoundException;
+import java.util.List;
+import dao.IMiniBusDAO;
+import oracle.OracleDataSourceDAO;
+import metier.MiniBus;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import oracle.OracleMiniBusDAO;
 
 /**
  *
@@ -17,6 +25,8 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        listeMinibus = minibusDAO.getLesMinibus();
+        System.out.println(listeMinibus.toString());
         initComponents();
     }
 
@@ -492,6 +502,15 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try { 
+                    dataSourceDAO = OracleDataSourceDAO.getOracleDataSourceDAO();
+                    minibusDAO = new OracleMiniBusDAO(); 
+                    minibusDAO.setDataSource(dataSourceDAO); 
+                    connexionBD = dataSourceDAO.getConnection(); 
+                    minibusDAO.setConnection(connexionBD); 
+                } catch (SQLException | FileNotFoundException ex) { 
+
+                } 
                 new Main().setVisible(true);
             }
         });
@@ -541,4 +560,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel title;
     private javax.swing.JLabel versusLabel;
     // End of variables declaration//GEN-END:variables
+    
+    private final List<MiniBus> listeMinibus; 
+    private static IMiniBusDAO minibusDAO; 
+    private static DataSource dataSourceDAO; 
+    private static Connection connexionBD;
+    
+    private int indexMinibus = 0;
 }
