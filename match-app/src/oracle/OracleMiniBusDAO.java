@@ -21,8 +21,8 @@ public class OracleMiniBusDAO implements IMiniBusDAO {
         Statement stmt = null; 
         List<MiniBus> listeMinibus = null; 
 
-        try { 
-            stmt = connexionBD.createStatement(); 
+        try {
+            stmt = connexionBD.createStatement();
             listeMinibus = new ArrayList<>(); 
 
             resultSet = stmt.executeQuery("SELECT * FROM minibus");
