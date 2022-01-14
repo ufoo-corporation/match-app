@@ -5,6 +5,17 @@
  */
 package vue;
 
+import dao.IPersonDAO;
+import dao.mysql.MySQLConnectionManager;
+import dao.mysql.MySQLPersonDAO;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.util.List;
+import metier.Person;
+
 /**
  *
  * @author xtz_j
@@ -15,6 +26,10 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        List<Person> people = personDAO.getPeople();
+        
+        System.out.println(people);
+        
         initComponents();
     }
 
@@ -62,19 +77,21 @@ public class Main extends javax.swing.JFrame {
         confirmSaveButton = new javax.swing.JButton();
         cancelSaveButton = new javax.swing.JButton();
         saveCourtInfoLabel = new javax.swing.JLabel();
-        addSomebody = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        addSomebodyDialog = new javax.swing.JDialog();
+        addSomebodyTitle = new javax.swing.JLabel();
+        firstNameLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        firstNameTextField = new javax.swing.JTextField();
+        nameTextField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        generatePasswordButton = new javax.swing.JButton();
+        nationalityLabel = new javax.swing.JLabel();
+        nationalityComboBox = new javax.swing.JComboBox<>();
+        categoryLabel = new javax.swing.JLabel();
+        categoryComboBox = new javax.swing.JComboBox<>();
+        confirmButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         title = new javax.swing.JLabel();
         courtComboBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
@@ -339,81 +356,103 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Ajouter une personne");
+        addSomebodyTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addSomebodyTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addSomebodyTitle.setText("Ajouter une personne");
 
-        jLabel3.setText("Prenom");
+        firstNameLabel.setText("Prenom");
 
-        jLabel4.setText("Nom");
+        nameLabel.setText("Nom");
 
-        jLabel5.setText("Mot de passe");
+        passwordLabel.setText("Mot de passe");
 
-        jButton1.setText("Générer automatiquement");
+        generatePasswordButton.setText("Générer automatiquement");
 
-        jLabel6.setText("Nationnalité");
+        nationalityLabel.setText("Nationnalité");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Afrique du Sud", "Afghanistan", "Albanie", "Algérie", "Allemagne", "Andorre", "Angola", "Antigua-et-Barbuda", "Arabie Saoudite", "Argentine", "Arménie", "Australie", "Autriche", "Azerbaïdjan", "Bahamas", "Bahreïn", "Bangladesh", "Barbade", "Belgique", "Belize", "Bénin", "Bhoutan", "Biélorussie", "Birmanie", "Bolivie", "Bosnie-Herzégovine", "Botswana", "Brésil", "Brunei", "Bulgarie", "Burkina Faso", "Burundi", "Cambodge", "Cameroun", "Canada", "Cap-Vert", "Chili", "Chine", "Chypre", "Colombie", "Comores", "Corée du Nord", "Corée du Sud", "Costa Rica", "Côte d’Ivoire", "Croatie", "Cuba", "Danemark", "Djibouti", "Dominique", "Égypte", "Émirats arabes unis", "Équateur", "Érythrée", "Espagne", "Eswatini", "Estonie", "États-Unis", "Éthiopie", "Fidji", "Finlande", "France", "Gabon", "Gambie", "Géorgie", "Ghana", "Grèce", "Grenade", "Guatemala", "Guinée", "Guinée équatoriale", "Guinée-Bissau", "Guyana", "Haïti", "Honduras", "Hongrie", "Îles Cook", "Îles Marshall", "Inde", "Indonésie", "Irak", "Iran", "Irlande", "Islande", "Israël", "Italie", "Jamaïque", "Japon", "Jordanie", "Kazakhstan", "Kenya", "Kirghizistan", "Kiribati", "Koweït", "Laos", "Lesotho", "Lettonie", "Liban", "Liberia", "Libye", "Liechtenstein", "Lituanie", "Luxembourg", "Macédoine", "Madagascar", "Malaisie", "Malawi", "Maldives", "Mali", "Malte", "Maroc", "Maurice", "Mauritanie", "Mexique", "Micronésie", "Moldavie", "Monaco", "Mongolie", "Monténégro", "Mozambique", "Namibie", "Nauru", "Népal", "Nicaragua", "Niger", "Nigeria", "Niue", "Norvège", "Nouvelle-Zélande", "Oman", "Ouganda", "Ouzbékistan", "Pakistan", "Palaos", "Palestine", "Panama", "Papouasie-Nouvelle-Guinée", "Paraguay", "Pays-Bas", "Pérou", "Philippines", "Pologne", "Portugal", "Qatar", "République centrafricaine", "République démocratique du Congo", "République Dominicaine", "République du Congo", "République tchèque", "Roumanie", "Royaume-Uni", "Russie", "Rwanda", "Saint-Kitts-et-Nevis", "Saint-Vincent-et-les-Grenadines", "Sainte-Lucie", "Saint-Marin", "Salomon", "Salvador", "Samoa", "São Tomé-et-Principe", "Sénégal", "Serbie", "Seychelles", "Sierra Leone", "Singapour", "Slovaquie", "Slovénie", "Somalie", "Soudan", "Soudan du Sud", "Sri Lanka", "Suède", "Suisse", "Suriname", "Syrie", "Tadjikistan", "Tanzanie", "Tchad", "Thaïlande", "Timor oriental", "Togo", "Tonga", "Trinité-et-Tobago", "Tunisie", "Turkménistan", "Turquie", "Tuvalu", "Ukraine", "Uruguay", "Vanuatu", "Vatican", "Venezuela", "Viêt Nam", "Yémen", "Zambie", "Zimbabwe" }));
+        nationalityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Afrique du Sud", "Afghanistan", "Albanie", "Algérie", "Allemagne", "Andorre", "Angola", "Antigua-et-Barbuda", "Arabie Saoudite", "Argentine", "Arménie", "Australie", "Autriche", "Azerbaïdjan", "Bahamas", "Bahreïn", "Bangladesh", "Barbade", "Belgique", "Belize", "Bénin", "Bhoutan", "Biélorussie", "Birmanie", "Bolivie", "Bosnie-Herzégovine", "Botswana", "Brésil", "Brunei", "Bulgarie", "Burkina Faso", "Burundi", "Cambodge", "Cameroun", "Canada", "Cap-Vert", "Chili", "Chine", "Chypre", "Colombie", "Comores", "Corée du Nord", "Corée du Sud", "Costa Rica", "Côte d’Ivoire", "Croatie", "Cuba", "Danemark", "Djibouti", "Dominique", "Égypte", "Émirats arabes unis", "Équateur", "Érythrée", "Espagne", "Eswatini", "Estonie", "États-Unis", "Éthiopie", "Fidji", "Finlande", "France", "Gabon", "Gambie", "Géorgie", "Ghana", "Grèce", "Grenade", "Guatemala", "Guinée", "Guinée équatoriale", "Guinée-Bissau", "Guyana", "Haïti", "Honduras", "Hongrie", "Îles Cook", "Îles Marshall", "Inde", "Indonésie", "Irak", "Iran", "Irlande", "Islande", "Israël", "Italie", "Jamaïque", "Japon", "Jordanie", "Kazakhstan", "Kenya", "Kirghizistan", "Kiribati", "Koweït", "Laos", "Lesotho", "Lettonie", "Liban", "Liberia", "Libye", "Liechtenstein", "Lituanie", "Luxembourg", "Macédoine", "Madagascar", "Malaisie", "Malawi", "Maldives", "Mali", "Malte", "Maroc", "Maurice", "Mauritanie", "Mexique", "Micronésie", "Moldavie", "Monaco", "Mongolie", "Monténégro", "Mozambique", "Namibie", "Nauru", "Népal", "Nicaragua", "Niger", "Nigeria", "Niue", "Norvège", "Nouvelle-Zélande", "Oman", "Ouganda", "Ouzbékistan", "Pakistan", "Palaos", "Palestine", "Panama", "Papouasie-Nouvelle-Guinée", "Paraguay", "Pays-Bas", "Pérou", "Philippines", "Pologne", "Portugal", "Qatar", "République centrafricaine", "République démocratique du Congo", "République Dominicaine", "République du Congo", "République tchèque", "Roumanie", "Royaume-Uni", "Russie", "Rwanda", "Saint-Kitts-et-Nevis", "Saint-Vincent-et-les-Grenadines", "Sainte-Lucie", "Saint-Marin", "Salomon", "Salvador", "Samoa", "São Tomé-et-Principe", "Sénégal", "Serbie", "Seychelles", "Sierra Leone", "Singapour", "Slovaquie", "Slovénie", "Somalie", "Soudan", "Soudan du Sud", "Sri Lanka", "Suède", "Suisse", "Suriname", "Syrie", "Tadjikistan", "Tanzanie", "Tchad", "Thaïlande", "Timor oriental", "Togo", "Tonga", "Trinité-et-Tobago", "Tunisie", "Turkménistan", "Turquie", "Tuvalu", "Ukraine", "Uruguay", "Vanuatu", "Vatican", "Venezuela", "Viêt Nam", "Yémen", "Zambie", "Zimbabwe" }));
 
-        jLabel7.setText("Catégorie");
+        categoryLabel.setText("Catégorie");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pas de callification", "JAT2", "ITT1 ou +" }));
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pas de callification", "JAT2", "ITT1 ou +" }));
 
-        javax.swing.GroupLayout addSomebodyLayout = new javax.swing.GroupLayout(addSomebody.getContentPane());
-        addSomebody.getContentPane().setLayout(addSomebodyLayout);
-        addSomebodyLayout.setHorizontalGroup(
-            addSomebodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addSomebodyLayout.createSequentialGroup()
+        confirmButton.setText("OK");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout addSomebodyDialogLayout = new javax.swing.GroupLayout(addSomebodyDialog.getContentPane());
+        addSomebodyDialog.getContentPane().setLayout(addSomebodyDialogLayout);
+        addSomebodyDialogLayout.setHorizontalGroup(
+            addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addSomebodyDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(addSomebodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addSomebodyLayout.createSequentialGroup()
-                        .addGroup(addSomebodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, 212, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 178, Short.MAX_VALUE))
-                    .addGroup(addSomebodyLayout.createSequentialGroup()
-                        .addGroup(addSomebodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(addSomebodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addSomebodyDialogLayout.createSequentialGroup()
+                        .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passwordLabel)
+                            .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(addSomebodyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(firstNameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(firstNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(addSomebodyDialogLayout.createSequentialGroup()
+                        .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nationalityLabel)
+                            .addComponent(categoryLabel)
+                            .addComponent(generatePasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nationalityComboBox, 0, 212, Short.MAX_VALUE)
+                            .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(addSomebodyDialogLayout.createSequentialGroup()
+                                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 178, Short.MAX_VALUE))))
         );
-        addSomebodyLayout.setVerticalGroup(
-            addSomebodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addSomebodyLayout.createSequentialGroup()
+        addSomebodyDialogLayout.setVerticalGroup(
+            addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addSomebodyDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(addSomebodyTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(firstNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(nameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(generatePasswordButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(nationalityLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nationalityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(categoryLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelButton)
+                    .addComponent(confirmButton))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -562,9 +601,19 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelAddButtonActionPerformed
 
     private void saveCourtButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCourtButton1ActionPerformed
-        addSomebody.setVisible(true);
-        addSomebody.setSize(470, 640);
+        addSomebodyDialog.setVisible(true);
+        addSomebodyDialog.setSize(470, 640);
     }//GEN-LAST:event_saveCourtButton1ActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        addSomebodyDialog.setVisible(false);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        Person personToAdd = new Person(-1, firstNameTextField.getText(), nameTextField.getText());
+        personDAO.createPerson(personToAdd);
+        addSomebodyDialog.setVisible(false);
+    }//GEN-LAST:event_confirmButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,10 +643,14 @@ public class Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            MySQLConnectionManager.connect();
+            Connection connection = MySQLConnectionManager.getConnection();
+                        
+            personDAO = new MySQLPersonDAO();
+            personDAO.setConnection(connection);
+            
+            new Main().setVisible(true);
         });
     }
 
@@ -606,32 +659,28 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog addMatchDialog;
     private javax.swing.JLabel addMatchInfoLabel;
     private javax.swing.JLabel addMatchTitleLabel;
-    private javax.swing.JDialog addSomebody;
+    private javax.swing.JDialog addSomebodyDialog;
+    private javax.swing.JLabel addSomebodyTitle;
     private javax.swing.JLabel ballBoyLabel;
     private javax.swing.JScrollPane ballBoySelectionPane;
     private javax.swing.JButton cancelAddButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelSaveButton;
+    private javax.swing.JComboBox<String> categoryComboBox;
+    private javax.swing.JLabel categoryLabel;
     private javax.swing.JButton confirmAddButton;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JButton confirmSaveButton;
     private javax.swing.JComboBox<String> courtComboBox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JTextField firstNameTextField;
+    private javax.swing.JButton generatePasswordButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lineRefereeLabel;
     private javax.swing.JScrollPane lineRefereesSelectionPane;
     private javax.swing.JComboBox<String> mainRefereeComboBox;
@@ -642,6 +691,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel matchDateLabel1;
     private javax.swing.JComboBox<String> matchTimeComboBox;
     private javax.swing.JLabel matchTimeLabel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JComboBox<String> nationalityComboBox;
+    private javax.swing.JLabel nationalityLabel;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> player1ComboxBox;
     private javax.swing.JComboBox<String> player2ComboxBox;
     private javax.swing.JComboBox<String> player3ComboxBox;
@@ -659,4 +714,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel title;
     private javax.swing.JLabel versusLabel;
     // End of variables declaration//GEN-END:variables
+
+    static IPersonDAO personDAO;
 }
