@@ -43,6 +43,12 @@ public class MySQLConnectionManager {
             }
         }
         
+        if(result != null){
+            System.out.println("Connection successful");
+        }else{
+            System.out.println("Connection failled");
+        }
+        
         connection = result;
     }
     

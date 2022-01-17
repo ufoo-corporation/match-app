@@ -8,13 +8,12 @@ package vue;
 import dao.IPersonDAO;
 import dao.mysql.MySQLConnectionManager;
 import dao.mysql.MySQLPersonDAO;
-import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.DriverManager;
 import java.util.List;
+import metier.BallBoy;
 import metier.Person;
+import metier.Player;
+import metier.Referee;
 
 /**
  *
@@ -25,11 +24,7 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    public Main() {
-        List<Person> people = personDAO.getPeople();
-        
-        System.out.println(people);
-        
+    public Main() {        
         initComponents();
     }
 
@@ -43,15 +38,15 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         addMatchDialog = new javax.swing.JDialog();
-        player2ComboxBox = new javax.swing.JComboBox<>();
-        player1ComboxBox = new javax.swing.JComboBox<>();
-        player3ComboxBox = new javax.swing.JComboBox<>();
-        player4ComboxBox = new javax.swing.JComboBox<>();
+        player2ComboBox = new javax.swing.JComboBox<>();
+        player1ComboBox = new javax.swing.JComboBox<>();
+        player3ComboBox = new javax.swing.JComboBox<>();
+        player4ComboBox = new javax.swing.JComboBox<>();
         versusLabel = new javax.swing.JLabel();
-        lineRefereesSelectionPane = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        ballBoySelectionPane = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        lineRefereesScrollPane = new javax.swing.JScrollPane();
+        refereesListPane = new javax.swing.JList<>();
+        ballBoyScrollPane = new javax.swing.JScrollPane();
+        ballBoyListPane = new javax.swing.JList<>();
         mainRefereeComboBox = new javax.swing.JComboBox<>();
         mainRefereeLabel = new javax.swing.JLabel();
         lineRefereeLabel = new javax.swing.JLabel();
@@ -88,10 +83,15 @@ public class Main extends javax.swing.JFrame {
         generatePasswordButton = new javax.swing.JButton();
         nationalityLabel = new javax.swing.JLabel();
         nationalityComboBox = new javax.swing.JComboBox<>();
-        categoryLabel = new javax.swing.JLabel();
-        categoryComboBox = new javax.swing.JComboBox<>();
-        confirmButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
+        levelLabel = new javax.swing.JLabel();
+        levelComboBox = new javax.swing.JComboBox<>();
+        confirmAddSomebodyButton = new javax.swing.JButton();
+        cancelAddSomebodyButton = new javax.swing.JButton();
+        emailLabe = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JTextField();
+        typeLabel = new javax.swing.JLabel();
+        typeComboBox = new javax.swing.JComboBox<>();
+        addMatchInfoLabel1 = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
         courtComboBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
@@ -99,35 +99,35 @@ public class Main extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         addMatchButton = new javax.swing.JButton();
         saveCourtButton = new javax.swing.JButton();
-        saveCourtButton1 = new javax.swing.JButton();
+        addSomebodytButton = new javax.swing.JButton();
 
         addMatchDialog.setAlwaysOnTop(true);
         addMatchDialog.setResizable(false);
 
-        player2ComboxBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
+        player2ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
 
-        player1ComboxBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
+        player1ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
 
-        player3ComboxBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
+        player3ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
 
-        player4ComboxBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
+        player4ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
 
         versusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         versusLabel.setText("vs");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        refereesListPane.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "ABED Karim", "BASTIEN Benoît", "BATTA Florent", "BEN EL HADJ Hakim", "BRISARD Jérôme", "BUQUET Ruddy", "DECHEPY Bastien", "DELAJOD Willy" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        lineRefereesSelectionPane.setViewportView(jList1);
+        lineRefereesScrollPane.setViewportView(refereesListPane);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        ballBoyListPane.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "BROUSSET PIERRE", "CAYRE LUDOVIC", "GARCES JEROME", "POITE ROMAIN", "RAYNAL MATHIEU", "ROZIER JEREMY" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        ballBoySelectionPane.setViewportView(jList2);
+        ballBoyScrollPane.setViewportView(ballBoyListPane);
 
         mainRefereeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ABED Karim", "BASTIEN Benoît", "BATTA Florent", "BEN EL HADJ Hakim", "BRISARD Jérôme", "BUQUET Ruddy", "DECHEPY Bastien", "DELAJOD Willy" }));
         mainRefereeComboBox.setPreferredSize(new java.awt.Dimension(124, 20));
@@ -208,10 +208,10 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addMatchDialogLayout.createSequentialGroup()
                                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lineRefereesSelectionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(player1ComboxBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 124, Short.MAX_VALUE)
-                                        .addComponent(player3ComboxBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(player1ComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 124, Short.MAX_VALUE)
+                                        .addComponent(player3ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(versusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,9 +224,9 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(matchTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(matchTimeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(player4ComboxBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ballBoySelectionPane)
-                            .addComponent(player2ComboxBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(player4ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ballBoyScrollPane)
+                            .addComponent(player2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(78, 79, Short.MAX_VALUE))
         );
         addMatchDialogLayout.setVerticalGroup(
@@ -251,16 +251,16 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(matchDateLabel1)
-                            .addComponent(player2ComboxBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(player2ComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(player4ComboxBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(player4ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMatchDialogLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(versusLabel)
-                            .addComponent(player1ComboxBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(player1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(player3ComboxBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(player3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainRefereeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,8 +271,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(ballBoyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lineRefereesSelectionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ballBoySelectionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -371,24 +371,38 @@ public class Main extends javax.swing.JFrame {
         nationalityLabel.setText("Nationnalité");
 
         nationalityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Afrique du Sud", "Afghanistan", "Albanie", "Algérie", "Allemagne", "Andorre", "Angola", "Antigua-et-Barbuda", "Arabie Saoudite", "Argentine", "Arménie", "Australie", "Autriche", "Azerbaïdjan", "Bahamas", "Bahreïn", "Bangladesh", "Barbade", "Belgique", "Belize", "Bénin", "Bhoutan", "Biélorussie", "Birmanie", "Bolivie", "Bosnie-Herzégovine", "Botswana", "Brésil", "Brunei", "Bulgarie", "Burkina Faso", "Burundi", "Cambodge", "Cameroun", "Canada", "Cap-Vert", "Chili", "Chine", "Chypre", "Colombie", "Comores", "Corée du Nord", "Corée du Sud", "Costa Rica", "Côte d’Ivoire", "Croatie", "Cuba", "Danemark", "Djibouti", "Dominique", "Égypte", "Émirats arabes unis", "Équateur", "Érythrée", "Espagne", "Eswatini", "Estonie", "États-Unis", "Éthiopie", "Fidji", "Finlande", "France", "Gabon", "Gambie", "Géorgie", "Ghana", "Grèce", "Grenade", "Guatemala", "Guinée", "Guinée équatoriale", "Guinée-Bissau", "Guyana", "Haïti", "Honduras", "Hongrie", "Îles Cook", "Îles Marshall", "Inde", "Indonésie", "Irak", "Iran", "Irlande", "Islande", "Israël", "Italie", "Jamaïque", "Japon", "Jordanie", "Kazakhstan", "Kenya", "Kirghizistan", "Kiribati", "Koweït", "Laos", "Lesotho", "Lettonie", "Liban", "Liberia", "Libye", "Liechtenstein", "Lituanie", "Luxembourg", "Macédoine", "Madagascar", "Malaisie", "Malawi", "Maldives", "Mali", "Malte", "Maroc", "Maurice", "Mauritanie", "Mexique", "Micronésie", "Moldavie", "Monaco", "Mongolie", "Monténégro", "Mozambique", "Namibie", "Nauru", "Népal", "Nicaragua", "Niger", "Nigeria", "Niue", "Norvège", "Nouvelle-Zélande", "Oman", "Ouganda", "Ouzbékistan", "Pakistan", "Palaos", "Palestine", "Panama", "Papouasie-Nouvelle-Guinée", "Paraguay", "Pays-Bas", "Pérou", "Philippines", "Pologne", "Portugal", "Qatar", "République centrafricaine", "République démocratique du Congo", "République Dominicaine", "République du Congo", "République tchèque", "Roumanie", "Royaume-Uni", "Russie", "Rwanda", "Saint-Kitts-et-Nevis", "Saint-Vincent-et-les-Grenadines", "Sainte-Lucie", "Saint-Marin", "Salomon", "Salvador", "Samoa", "São Tomé-et-Principe", "Sénégal", "Serbie", "Seychelles", "Sierra Leone", "Singapour", "Slovaquie", "Slovénie", "Somalie", "Soudan", "Soudan du Sud", "Sri Lanka", "Suède", "Suisse", "Suriname", "Syrie", "Tadjikistan", "Tanzanie", "Tchad", "Thaïlande", "Timor oriental", "Togo", "Tonga", "Trinité-et-Tobago", "Tunisie", "Turkménistan", "Turquie", "Tuvalu", "Ukraine", "Uruguay", "Vanuatu", "Vatican", "Venezuela", "Viêt Nam", "Yémen", "Zambie", "Zimbabwe" }));
+        nationalityComboBox.setEnabled(false);
 
-        categoryLabel.setText("Catégorie");
+        levelLabel.setText("Catégorie");
 
-        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pas de callification", "JAT2", "ITT1 ou +" }));
+        levelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pas de callification", "JAT2", "ITT1 ou +" }));
 
-        confirmButton.setText("OK");
-        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+        confirmAddSomebodyButton.setText("OK");
+        confirmAddSomebodyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmButtonActionPerformed(evt);
+                confirmAddSomebodyButtonActionPerformed(evt);
             }
         });
 
-        cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+        cancelAddSomebodyButton.setText("Cancel");
+        cancelAddSomebodyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                cancelAddSomebodyButtonActionPerformed(evt);
             }
         });
+
+        emailLabe.setText("Email");
+
+        typeLabel.setText("Status");
+
+        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ramasseur de balle", "Joueur", "Arbitre" }));
+        typeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeComboBoxActionPerformed(evt);
+            }
+        });
+
+        addMatchInfoLabel1.setText("<html><p style=\"color:red;\">Informations si les valeurs rentrées ne sont pas correctes et risquent de dépasser<p><html>");
 
         javax.swing.GroupLayout addSomebodyDialogLayout = new javax.swing.GroupLayout(addSomebodyDialog.getContentPane());
         addSomebodyDialog.getContentPane().setLayout(addSomebodyDialogLayout);
@@ -398,28 +412,28 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addSomebodyDialogLayout.createSequentialGroup()
-                        .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordLabel)
-                            .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(addSomebodyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                                .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(firstNameLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(firstNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(addSomebodyDialogLayout.createSequentialGroup()
-                        .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nationalityLabel)
-                            .addComponent(categoryLabel)
-                            .addComponent(generatePasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nationalityComboBox, 0, 212, Short.MAX_VALUE)
-                            .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(addSomebodyDialogLayout.createSequentialGroup()
-                                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 178, Short.MAX_VALUE))))
+                        .addComponent(confirmAddSomebodyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelAddSomebodyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(addMatchInfoLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(passwordField)
+                        .addComponent(addSomebodyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(firstNameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(firstNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nationalityLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(levelLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(generatePasswordButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nationalityComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(levelComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(emailLabe, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(emailTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(typeLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         addSomebodyDialogLayout.setVerticalGroup(
             addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,6 +449,14 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(typeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(emailLabe)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -445,14 +467,16 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nationalityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(categoryLabel)
+                .addComponent(levelLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cancelButton)
-                    .addComponent(confirmButton))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addComponent(levelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchInfoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmAddSomebodyButton)
+                    .addComponent(cancelAddSomebodyButton))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -500,6 +524,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -527,10 +556,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        saveCourtButton1.setText("Ajouter quelqu'un");
-        saveCourtButton1.addActionListener(new java.awt.event.ActionListener() {
+        addSomebodytButton.setText("Ajouter quelqu'un");
+        addSomebodytButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveCourtButton1ActionPerformed(evt);
+                addSomebodytButtonActionPerformed(evt);
             }
         });
 
@@ -547,7 +576,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(saveCourtButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addMatchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(saveCourtButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addSomebodytButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -574,7 +603,7 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveCourtButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveCourtButton1)
+                        .addComponent(addSomebodytButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -583,6 +612,15 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchButtonActionPerformed
+        player1ComboBox.removeAllItems();
+        
+        List<Person> people = personDAO.getPeople();
+        for(Person person : people){
+            player1ComboBox.addItem(String.format("%s %s", person.getFirstName(), person.getName().toUpperCase()));
+        }
+        
+        refereesListPane.setListData(new String[] { "aaa", "bbb"});
+        
         addMatchDialog.setVisible(true);
         addMatchDialog.setSize(470, 640);
     }//GEN-LAST:event_addMatchButtonActionPerformed
@@ -600,21 +638,73 @@ public class Main extends javax.swing.JFrame {
         addMatchDialog.setVisible(false);
     }//GEN-LAST:event_cancelAddButtonActionPerformed
 
-    private void saveCourtButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCourtButton1ActionPerformed
+    private void addSomebodytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSomebodytButtonActionPerformed
+        setupAddSomebodyPanel();
+        
         addSomebodyDialog.setVisible(true);
         addSomebodyDialog.setSize(470, 640);
-    }//GEN-LAST:event_saveCourtButton1ActionPerformed
+    }//GEN-LAST:event_addSomebodytButtonActionPerformed
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if(evt.getClickCount() == 2){
+            int row = jTable1.rowAtPoint(evt.getPoint());
+            int col = jTable1.columnAtPoint(evt.getPoint());
+            if (row >= 0 && col >= 0) {
+                System.out.println(String.format("Row: %d , Col: %d", row, col));
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void cancelAddSomebodyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddSomebodyButtonActionPerformed
         addSomebodyDialog.setVisible(false);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_cancelAddSomebodyButtonActionPerformed
 
-    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        Person personToAdd = new Person(-1, firstNameTextField.getText(), nameTextField.getText());
+    private void confirmAddSomebodyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddSomebodyButtonActionPerformed
+        System.out.println(typeComboBox.getSelectedIndex());
+
+        Person personToAdd = null;
+
+        String firstName = firstNameTextField.getText();
+        String name = nameTextField.getText();
+        String email = emailTextField.getText();
+        char[] password = passwordField.getPassword();
+        String nationality = (String) nationalityComboBox.getSelectedItem();
+        String level = (String) levelComboBox.getSelectedItem();
+
+        switch(typeComboBox.getSelectedIndex()){
+            case 0:
+            personToAdd = new BallBoy(-1, firstName, name);
+            break;
+            case 1:
+            personToAdd = new Player(-1, firstName, name, nationality);
+            break;
+            case 2:
+            personToAdd = new Referee(-1, firstName, name, nationality, level);
+            break;
+        }
+
         personDAO.createPerson(personToAdd);
-        addSomebodyDialog.setVisible(false);
-    }//GEN-LAST:event_confirmButtonActionPerformed
 
+        addSomebodyDialog.setVisible(false);
+    }//GEN-LAST:event_confirmAddSomebodyButtonActionPerformed
+
+    private void typeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboBoxActionPerformed
+        setupAddSomebodyPanel();
+    }//GEN-LAST:event_typeComboBoxActionPerformed
+
+    private void setupAddSomebodyPanel(){
+        int typeIndex = typeComboBox.getSelectedIndex();
+        
+        boolean isPlayer = typeIndex == 1;
+        boolean isReferee = typeIndex == 2;
+        
+        emailTextField.setEnabled(isPlayer);
+        passwordField.setEnabled(isPlayer);
+        generatePasswordButton.setEnabled(isPlayer);
+        nationalityComboBox.setEnabled(isPlayer || isReferee);
+        levelComboBox.setEnabled(isReferee);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -658,31 +748,34 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton addMatchButton;
     private javax.swing.JDialog addMatchDialog;
     private javax.swing.JLabel addMatchInfoLabel;
+    private javax.swing.JLabel addMatchInfoLabel1;
     private javax.swing.JLabel addMatchTitleLabel;
     private javax.swing.JDialog addSomebodyDialog;
     private javax.swing.JLabel addSomebodyTitle;
+    private javax.swing.JButton addSomebodytButton;
     private javax.swing.JLabel ballBoyLabel;
-    private javax.swing.JScrollPane ballBoySelectionPane;
+    private javax.swing.JList<String> ballBoyListPane;
+    private javax.swing.JScrollPane ballBoyScrollPane;
     private javax.swing.JButton cancelAddButton;
-    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton cancelAddSomebodyButton;
     private javax.swing.JButton cancelSaveButton;
-    private javax.swing.JComboBox<String> categoryComboBox;
-    private javax.swing.JLabel categoryLabel;
     private javax.swing.JButton confirmAddButton;
-    private javax.swing.JButton confirmButton;
+    private javax.swing.JButton confirmAddSomebodyButton;
     private javax.swing.JButton confirmSaveButton;
     private javax.swing.JComboBox<String> courtComboBox;
+    private javax.swing.JLabel emailLabe;
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JButton generatePasswordButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> levelComboBox;
+    private javax.swing.JLabel levelLabel;
     private javax.swing.JLabel lineRefereeLabel;
-    private javax.swing.JScrollPane lineRefereesSelectionPane;
+    private javax.swing.JScrollPane lineRefereesScrollPane;
     private javax.swing.JComboBox<String> mainRefereeComboBox;
     private javax.swing.JLabel mainRefereeLabel;
     private javax.swing.JComboBox<String> matchDateComboBox;
@@ -697,13 +790,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel nationalityLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JComboBox<String> player1ComboxBox;
-    private javax.swing.JComboBox<String> player2ComboxBox;
-    private javax.swing.JComboBox<String> player3ComboxBox;
-    private javax.swing.JComboBox<String> player4ComboxBox;
+    private javax.swing.JComboBox<String> player1ComboBox;
+    private javax.swing.JComboBox<String> player2ComboBox;
+    private javax.swing.JComboBox<String> player3ComboBox;
+    private javax.swing.JComboBox<String> player4ComboBox;
     private javax.swing.JLabel playerLabel;
+    private javax.swing.JList<String> refereesListPane;
     private javax.swing.JButton saveCourtButton;
-    private javax.swing.JButton saveCourtButton1;
     private javax.swing.JDialog saveCourtDialog;
     private javax.swing.JLabel saveCourtInfoLabel;
     private javax.swing.JComboBox<String> saveDateComboBox;
@@ -712,6 +805,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel saveTimeLabel;
     private javax.swing.JLabel saveTitleLabel;
     private javax.swing.JLabel title;
+    private javax.swing.JComboBox<String> typeComboBox;
+    private javax.swing.JLabel typeLabel;
     private javax.swing.JLabel versusLabel;
     // End of variables declaration//GEN-END:variables
 

@@ -60,10 +60,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lineRefereesSelectionPane" min="-2" pref="126" max="-2" attributes="0"/>
+                                      <Component id="lineRefereesScrollPane" min="-2" pref="126" max="-2" attributes="0"/>
                                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="player1ComboxBox" alignment="1" pref="124" max="32767" attributes="0"/>
-                                          <Component id="player3ComboxBox" max="32767" attributes="0"/>
+                                          <Component id="player1ComboBox" alignment="1" pref="124" max="32767" attributes="0"/>
+                                          <Component id="player3ComboBox" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="mainRefereeComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -82,9 +82,9 @@
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="matchTimeComboBox" max="32767" attributes="0"/>
-                              <Component id="player4ComboxBox" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ballBoySelectionPane" alignment="0" max="32767" attributes="0"/>
-                              <Component id="player2ComboxBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="player4ComboBox" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ballBoyScrollPane" alignment="0" max="32767" attributes="0"/>
+                              <Component id="player2ComboBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -116,19 +116,19 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="matchDateLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="player2ComboxBox" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="player2ComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="player4ComboxBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="player4ComboBox" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="versusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="player1ComboxBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="player1ComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="player3ComboxBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="player3ComboBox" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -142,8 +142,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lineRefereesSelectionPane" min="-2" pref="207" max="-2" attributes="0"/>
-                      <Component id="ballBoySelectionPane" min="-2" pref="207" max="-2" attributes="0"/>
+                      <Component id="lineRefereesScrollPane" min="-2" pref="207" max="-2" attributes="0"/>
+                      <Component id="ballBoyScrollPane" min="-2" pref="207" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="addMatchInfoLabel" min="-2" pref="54" max="-2" attributes="0"/>
@@ -158,7 +158,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="player2ComboxBox">
+        <Component class="javax.swing.JComboBox" name="player2ComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="8">
@@ -177,7 +177,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="player1ComboxBox">
+        <Component class="javax.swing.JComboBox" name="player1ComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="8">
@@ -196,7 +196,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="player3ComboxBox">
+        <Component class="javax.swing.JComboBox" name="player3ComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="8">
@@ -215,7 +215,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="player4ComboxBox">
+        <Component class="javax.swing.JComboBox" name="player4ComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="8">
@@ -240,14 +240,14 @@
             <Property name="text" type="java.lang.String" value="vs"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="lineRefereesSelectionPane">
+        <Container class="javax.swing.JScrollPane" name="lineRefereesScrollPane">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="jList1">
+            <Component class="javax.swing.JList" name="refereesListPane">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="8">
@@ -268,14 +268,14 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JScrollPane" name="ballBoySelectionPane">
+        <Container class="javax.swing.JScrollPane" name="ballBoyScrollPane">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="jList2">
+            <Component class="javax.swing.JList" name="ballBoyListPane">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="6">
@@ -579,39 +579,35 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="addSomebodyTitle" alignment="0" pref="212" max="32767" attributes="0"/>
-                                  <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="firstNameTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="nameTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="confirmAddSomebodyButton" min="-2" pref="99" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="cancelAddSomebodyButton" min="-2" pref="99" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="nationalityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="categoryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="generatePasswordButton" alignment="0" max="32767" attributes="0"/>
-                              <Component id="nationalityComboBox" alignment="0" pref="212" max="32767" attributes="0"/>
-                              <Component id="categoryComboBox" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="confirmButton" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="cancelButton" min="-2" pref="99" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="178" max="32767" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="addMatchInfoLabel1" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="passwordField" max="32767" attributes="0"/>
+                          <Component id="addSomebodyTitle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="firstNameTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nameTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="nationalityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="levelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="generatePasswordButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nationalityComboBox" alignment="0" max="32767" attributes="0"/>
+                          <Component id="levelComboBox" alignment="0" max="32767" attributes="0"/>
+                          <Component id="emailLabe" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="emailTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="typeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="typeComboBox" min="-2" pref="212" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="183" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -629,6 +625,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="nameTextField" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="typeComboBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="emailLabe" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="emailTextField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="passwordField" min="-2" max="-2" attributes="0"/>
@@ -639,15 +643,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="nationalityComboBox" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="categoryLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="levelLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="categoryComboBox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
-                      <Component id="confirmButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="levelComboBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addMatchInfoLabel1" min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="confirmAddSomebodyButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cancelAddSomebodyButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="220" max="32767" attributes="0"/>
+                  <EmptySpace pref="145" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -896,17 +902,18 @@
                 <StringItem index="196" value="Zimbabwe"/>
               </StringArray>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="categoryLabel">
+        <Component class="javax.swing.JLabel" name="levelLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cat&#xe9;gorie"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="categoryComboBox">
+        <Component class="javax.swing.JComboBox" name="levelComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -920,21 +927,55 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="confirmButton">
+        <Component class="javax.swing.JButton" name="confirmAddSomebodyButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="OK"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmAddSomebodyButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="cancelButton">
+        <Component class="javax.swing.JButton" name="cancelAddSomebodyButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelAddSomebodyButtonActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="emailLabe">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Email"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="emailTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="typeLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Status"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="typeComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Ramasseur de balle"/>
+                <StringItem index="1" value="Joueur"/>
+                <StringItem index="2" value="Arbitre"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typeComboBoxActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="addMatchInfoLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p style=&quot;color:red;&quot;&gt;Informations si les valeurs rentr&#xe9;es ne sont pas correctes et risquent de d&#xe9;passer&lt;p&gt;&lt;html&gt;"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -978,7 +1019,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="saveCourtButton" max="32767" attributes="0"/>
                           <Component id="addMatchButton" max="32767" attributes="0"/>
-                          <Component id="saveCourtButton1" max="32767" attributes="0"/>
+                          <Component id="addSomebodytButton" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -1012,7 +1053,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="saveCourtButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="saveCourtButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="addSomebodytButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -1152,6 +1193,9 @@
               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1171,12 +1215,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveCourtButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="saveCourtButton1">
+    <Component class="javax.swing.JButton" name="addSomebodytButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ajouter quelqu&apos;un"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveCourtButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addSomebodytButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
