@@ -7,6 +7,8 @@ import java.sql.Connection;
 public interface IPersonDAO {
     public List<Person> getPeople();
     
+    public List<Person> getPeopleByType(String type);
+    
     public void createPerson(Person person);
     
     public void deletePerson(int id);

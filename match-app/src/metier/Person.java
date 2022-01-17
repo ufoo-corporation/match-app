@@ -23,4 +23,8 @@ public abstract class Person {
     public String toString(){
         return String.format("id: %d, %s %s", id, firstName, name.toUpperCase());
     }
+    
+    public String toDisplayString(){
+        return String.format("%s %s", firstName, name.toUpperCase());
+    }
 }

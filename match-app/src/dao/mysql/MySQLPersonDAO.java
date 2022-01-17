@@ -17,14 +17,19 @@ public class MySQLPersonDAO implements IPersonDAO {
     private Connection connection;
     
     @Override
-    public List<Person> getPeople() {
+    public List<Person> getPeopleByType(String type){
         Statement statement = null;
         ResultSet resultSet = null;
         List<Person> result = new ArrayList<>();
         
         try{
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM people;");
+            
+            if(type == null){
+                resultSet = statement.executeQuery("SELECT * FROM people;");
+            }else{
+                resultSet = statement.executeQuery(String.format("SELECT * FROM people WHERE type = '%s';", type));
+            }
 
             while(resultSet.next()){
                 result.add(fromDB(resultSet));
@@ -46,6 +51,11 @@ public class MySQLPersonDAO implements IPersonDAO {
         }
         
         return result;
+    }
+    
+    @Override
+    public List<Person> getPeople() {
+        return getPeopleByType(null);
     }
 
     @Override
