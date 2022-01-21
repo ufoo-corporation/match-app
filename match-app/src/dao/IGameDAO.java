@@ -5,7 +5,7 @@ import metier.Game;
 import java.sql.Connection;
 
 public interface IGameDAO {
-    public List<Game> getGames();
+    public List<Game> getGames(int courtIndex);
     
     public void createGame(Game game);
     

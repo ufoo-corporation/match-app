@@ -1,19 +1,16 @@
 package metier;
 
-import java.time.LocalTime;
-import java.util.Date;
-
 public class Game {
     private int id;
-    private Date date;
-    private LocalTime time;
+    private int date;
+    private int time;
     private int courtIndex;
     private Player player1;
     private Player player2;
     private Player player3;
     private Player player4;
     
-    public Game(int id, Date date, LocalTime time, int courtIndex, Player player1, Player player2, Player player3, Player player4){
+    public Game(int id, int date, int time, int courtIndex, Player player1, Player player2, Player player3, Player player4){
         this.id = id;
         this.time = time;
         this.date = date;
@@ -28,11 +25,11 @@ public class Game {
         return id;
     }
     
-    public Date getDate(){
+    public int getDate(){
         return date;
     }
     
-    public LocalTime getTime(){
+    public int getTime(){
         return time;
     }
     
@@ -54,5 +51,9 @@ public class Game {
     
     public Player getPlayer4(){
         return player4;
+    }
+    
+    public String toDisplayString(){
+        return String.format("%s vs %s", player1.getName().toUpperCase(), player2.getName().toUpperCase());
     }
 }

@@ -24,6 +24,6 @@ public class BallBoy {
     }
     
     public String toDisplayString(){
-        return String.format("%s %s", firstName, name);
+        return String.format("%s %s", firstName, name.toUpperCase());
     }
 }

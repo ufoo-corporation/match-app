@@ -10,17 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import metier.Game;
 import metier.Player;
-import java.util.Date;
-import java.time.LocalTime;
 
 public class MySQLGameDAO implements IGameDAO {
     private Connection connection;
     private IPlayerDAO playerDAO;
 
     @Override
-    public List<Game> getGames() {
+    public List<Game> getGames(int courtIndex) {
         try{
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM game");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM game WHERE courtIndex = ? order by time, date");
+            statement.setInt(1, courtIndex);
             
             ResultSet rs = statement.executeQuery();
             
@@ -41,13 +40,10 @@ public class MySQLGameDAO implements IGameDAO {
     @Override
     public void createGame(Game game) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO game (id, date, time, courtIndex, player1, player2, player3, player4) VALUES (null, ?, ?, ?, ?, ?, null, null");
-
-            long dateInMs = game.getDate().getTime();
-            LocalTime time = game.getTime();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO game (id, date, time, courtIndex, player1, player2, player3, player4) VALUES (null, ?, ?, ?, ?, ?, null, null)");
             
-            statement.setDate(1, new java.sql.Date(dateInMs));
-            statement.setTime(2, java.sql.Time.valueOf(time));
+            statement.setInt(1, game.getDate());
+            statement.setInt(2, game.getTime());
             statement.setInt(3, game.getCourtIndex());
             statement.setInt(4, game.getPlayer1().getId());
             statement.setInt(5, game.getPlayer2().getId());
@@ -76,8 +72,8 @@ public class MySQLGameDAO implements IGameDAO {
     private Game gameFromDB(ResultSet rs){
         try{
             int id = rs.getInt("id");
-            Date date = rs.getDate("date");
-            LocalTime time = rs.getTime("time").toLocalTime();
+            int date = rs.getInt("date");
+            int time = rs.getInt("time");
             int courtIndex = rs.getInt("courtIndex");
             int player1Id = rs.getInt("player1");
             int player2Id = rs.getInt("player2");

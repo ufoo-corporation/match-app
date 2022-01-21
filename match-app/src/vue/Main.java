@@ -19,6 +19,7 @@ import java.util.List;
 import metier.BallBoy;
 import metier.Player;
 import metier.Referee;
+import metier.Game;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {        
         initComponents();
+        setupMainPanel();
     }
 
     /**
@@ -60,12 +62,12 @@ public class Main extends javax.swing.JFrame {
         matchTimeLabel = new javax.swing.JLabel();
         matchTimeComboBox = new javax.swing.JComboBox<>();
         playerLabel = new javax.swing.JLabel();
-        confirmAddButton = new javax.swing.JButton();
-        cancelAddButton = new javax.swing.JButton();
+        confirmAddMatchButton = new javax.swing.JButton();
+        cancelAddMatchButton = new javax.swing.JButton();
         addMatchInfoLabel = new javax.swing.JLabel();
         addMatchTitleLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        matchDateComboBox1 = new javax.swing.JComboBox<>();
+        addMatchCourtComboBox = new javax.swing.JComboBox<>();
         matchDateLabel1 = new javax.swing.JLabel();
         playerLabel1 = new javax.swing.JLabel();
         saveCourtDialog = new javax.swing.JDialog();
@@ -101,7 +103,7 @@ public class Main extends javax.swing.JFrame {
         courtComboBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        planningTable = new javax.swing.JTable();
         addMatchButton = new javax.swing.JButton();
         saveCourtButton = new javax.swing.JButton();
         addSomebodytButton = new javax.swing.JButton();
@@ -150,12 +152,17 @@ public class Main extends javax.swing.JFrame {
 
         playerLabel.setText("Equipe 1");
 
-        confirmAddButton.setText("OK");
-
-        cancelAddButton.setText("Cancel");
-        cancelAddButton.addActionListener(new java.awt.event.ActionListener() {
+        confirmAddMatchButton.setText("OK");
+        confirmAddMatchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelAddButtonActionPerformed(evt);
+                confirmAddMatchButtonActionPerformed(evt);
+            }
+        });
+
+        cancelAddMatchButton.setText("Cancel");
+        cancelAddMatchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelAddMatchButtonActionPerformed(evt);
             }
         });
 
@@ -167,7 +174,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Court");
 
-        matchDateComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central", "Annexe 1", "Annexe 2", "Annexe 3" }));
+        addMatchCourtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central", "Annexe 1", "Annexe 2", "Annexe 3" }));
 
         playerLabel1.setText("Equipe 2");
 
@@ -176,9 +183,9 @@ public class Main extends javax.swing.JFrame {
         addMatchDialogLayout.setHorizontalGroup(
             addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addMatchDialogLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(matchDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(matchDateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,37 +194,35 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(matchTimeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(matchDateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(playerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addComponent(matchDateLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(addMatchDialogLayout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(addMatchTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(addMatchDialogLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(confirmAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(cancelAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(addMatchDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addMatchDialogLayout.createSequentialGroup()
+                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                        .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(addMatchDialogLayout.createSequentialGroup()
                         .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addMatchDialogLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addMatchDialogLayout.createSequentialGroup()
-                                        .addComponent(confirmAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cancelAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(addMatchDialogLayout.createSequentialGroup()
                                 .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 168, Short.MAX_VALUE)))
-                        .addGap(138, 138, 138))
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(addMatchDialogLayout.createSequentialGroup()
                                     .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,15 +238,11 @@ public class Main extends javax.swing.JFrame {
                                     .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(playerLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(player2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(mainRefereeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(addMatchDialogLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(addMatchTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(mainRefereeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         addMatchDialogLayout.setVerticalGroup(
             addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +258,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(matchDateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playerLabel)
@@ -283,17 +284,14 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(ballBoyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
-                        .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(confirmAddButton)
-                            .addComponent(cancelAddButton)))
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmAddMatchButton)
+                    .addComponent(cancelAddMatchButton))
                 .addContainerGap())
         );
 
@@ -498,7 +496,6 @@ public class Main extends javax.swing.JFrame {
         setTitle("Planning des Matchs");
         setBackground(new java.awt.Color(240, 0, 0));
         setMinimumSize(new java.awt.Dimension(100, 100));
-        setResizable(false);
 
         title.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -506,6 +503,11 @@ public class Main extends javax.swing.JFrame {
 
         courtComboBox.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         courtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central", "Annexe 1", "Annexe 2", "Annexe 3" }));
+        courtComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                courtComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -518,8 +520,8 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        planningTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        planningTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"10-12h", "", null, null, null, null, null, null, null},
                 {"12h-14h", null, null, null, null, null, null, null, null},
@@ -538,23 +540,26 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        planningTable.setGridColor(new java.awt.Color(0, 0, 0));
+        planningTable.setPreferredSize(new java.awt.Dimension(2000, 128));
+        planningTable.setRowHeight(32);
+        planningTable.getTableHeader().setReorderingAllowed(false);
+        planningTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                planningTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
-            jTable1.getColumnModel().getColumn(8).setResizable(false);
+        jScrollPane1.setViewportView(planningTable);
+        if (planningTable.getColumnModel().getColumnCount() > 0) {
+            planningTable.getColumnModel().getColumn(0).setResizable(false);
+            planningTable.getColumnModel().getColumn(1).setResizable(false);
+            planningTable.getColumnModel().getColumn(2).setResizable(false);
+            planningTable.getColumnModel().getColumn(3).setResizable(false);
+            planningTable.getColumnModel().getColumn(4).setResizable(false);
+            planningTable.getColumnModel().getColumn(5).setResizable(false);
+            planningTable.getColumnModel().getColumn(6).setResizable(false);
+            planningTable.getColumnModel().getColumn(7).setResizable(false);
+            planningTable.getColumnModel().getColumn(8).setResizable(false);
         }
 
         addMatchButton.setText("Ajouter un match");
@@ -585,13 +590,13 @@ public class Main extends javax.swing.JFrame {
             .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(saveCourtButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addMatchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addSomebodytButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addSomebodytButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -606,20 +611,19 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(courtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                         .addComponent(addMatchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveCourtButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addSomebodytButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(addSomebodytButton)))
                 .addContainerGap())
         );
 
@@ -627,47 +631,8 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchButtonActionPerformed
-        player1ComboBox.removeAllItems();
-        player2ComboBox.removeAllItems();
-        player3ComboBox.removeAllItems();
-        player4ComboBox.removeAllItems();
-        mainRefereeComboBox.removeAllItems();
-        
-        player3ComboBox.addItem("-- Aucun joueur --");
-        player4ComboBox.addItem("-- Aucun joueur --");
-        
-        List<Player> players = playerDAO.getPlayers();
-        for(Player player : players){
-            String comboBoxValue = player.toDisplayString();
-            player1ComboBox.addItem(comboBoxValue);
-            player2ComboBox.addItem(comboBoxValue);
-            player3ComboBox.addItem(comboBoxValue);
-            player4ComboBox.addItem(comboBoxValue);
-        }
-        
-        List<Referee> referees = refereeDAO.getReferees();
-        String[] refereesData = new String[referees.size()];
-        int i = 0;
-        for(Referee referee : referees){
-            refereesData[i] = referee.toDisplayString();
-            mainRefereeComboBox.addItem(referee.toDisplayString());
-            i++;
-        }
-        
-        refereesListPane.setListData(refereesData);
-        
-        List<BallBoy> ballBoys = ballBoyDAO.getBallBoys();
-        String[] ballBoysData = new String[ballBoys.size()];
-        i = 0;
-        for(BallBoy ballBoy : ballBoys){
-            ballBoysData[i] = ballBoy.toDisplayString();
-            i++;
-        }
-        
-        ballBoysListPane.setListData(ballBoysData);
-        
-        addMatchDialog.setVisible(true);
-        addMatchDialog.setSize(470, 640);
+        editedGame = null;
+        openAddMatchPanel();
     }//GEN-LAST:event_addMatchButtonActionPerformed
 
     private void saveCourtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCourtButtonActionPerformed
@@ -686,23 +651,35 @@ public class Main extends javax.swing.JFrame {
         addSomebodyDialog.setSize(470, 640);
     }//GEN-LAST:event_addSomebodytButtonActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void planningTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_planningTableMouseClicked
         if(evt.getClickCount() == 2){
-            int row = jTable1.rowAtPoint(evt.getPoint());
-            int col = jTable1.columnAtPoint(evt.getPoint());
+            int row = planningTable.rowAtPoint(evt.getPoint());
+            int col = planningTable.columnAtPoint(evt.getPoint());
             if (row >= 0 && col >= 0) {
                 System.out.println(String.format("Row: %d , Col: %d", row, col));
+                
+                editedGame = null;
+                
+                for(Game game : games){
+                    System.out.println(String.format("time = %d & date = %d", game.getTime(), game.getDate()));
+                    if(game.getDate() == col - 1 && game.getTime() == row){
+                        editedGame = game;
+                    }
+                }
+                
+                if(editedGame != null){
+                    openAddMatchPanel();
+                }
+                
             }
         }
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_planningTableMouseClicked
 
     private void cancelAddSomebodyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddSomebodyButtonActionPerformed
         addSomebodyDialog.setVisible(false);
     }//GEN-LAST:event_cancelAddSomebodyButtonActionPerformed
 
     private void confirmAddSomebodyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddSomebodyButtonActionPerformed
-        System.out.println(typeComboBox.getSelectedIndex());
-
         String firstName = firstNameTextField.getText();
         String name = nameTextField.getText();
         String email = emailTextField.getText();
@@ -729,10 +706,91 @@ public class Main extends javax.swing.JFrame {
         setupAddSomebodyPanel();
     }//GEN-LAST:event_typeComboBoxActionPerformed
 
-    private void cancelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddButtonActionPerformed
+    private void cancelAddMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddMatchButtonActionPerformed
         addMatchDialog.setVisible(false);
-    }//GEN-LAST:event_cancelAddButtonActionPerformed
+    }//GEN-LAST:event_cancelAddMatchButtonActionPerformed
 
+    private void confirmAddMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddMatchButtonActionPerformed
+        int date = matchDateComboBox.getSelectedIndex();
+        int time = matchTimeComboBox.getSelectedIndex();
+        int courtIndex = addMatchCourtComboBox.getSelectedIndex();
+        Player player1 = players.get(player1ComboBox.getSelectedIndex());
+        Player player2 = players.get(player2ComboBox.getSelectedIndex());
+        
+        gameDAO.createGame(new Game(-1, date, time, courtIndex, player1, player2, null, null));
+        
+        addMatchDialog.setVisible(false);
+        setupMainPanel();
+    }//GEN-LAST:event_confirmAddMatchButtonActionPerformed
+
+    private void courtComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courtComboBoxActionPerformed
+        setupMainPanel();
+    }//GEN-LAST:event_courtComboBoxActionPerformed
+
+    private void setupMainPanel(){
+        games = gameDAO.getGames(courtComboBox.getSelectedIndex());
+        
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 8; x++) {
+                planningTable.setValueAt("", y, x + 1);
+            }
+        }
+        
+        games.forEach(game -> {
+            planningTable.setValueAt(game.toDisplayString(), game.getTime(), game.getDate() + 1);
+        });
+    }
+    
+    private void openAddMatchPanel(){
+        player1ComboBox.removeAllItems();
+        player2ComboBox.removeAllItems();
+        player3ComboBox.removeAllItems();
+        player4ComboBox.removeAllItems();
+        mainRefereeComboBox.removeAllItems();
+        
+        player3ComboBox.addItem("-- Aucun joueur --");
+        player4ComboBox.addItem("-- Aucun joueur --");
+        
+        players = playerDAO.getPlayers();
+        for(Player player : players){
+            String comboBoxValue = player.toDisplayString();
+            player1ComboBox.addItem(comboBoxValue);
+            player2ComboBox.addItem(comboBoxValue);
+            player3ComboBox.addItem(comboBoxValue);
+            player4ComboBox.addItem(comboBoxValue);
+        }
+        
+        referees = refereeDAO.getReferees();
+        String[] refereesData = new String[referees.size()];
+        int i = 0;
+        for(Referee referee : referees){
+            refereesData[i] = referee.toDisplayString();
+            mainRefereeComboBox.addItem(referee.toDisplayString());
+            i++;
+        }
+        
+        refereesListPane.setListData(refereesData);
+        
+        ballBoys = ballBoyDAO.getBallBoys();
+        String[] ballBoysData = new String[ballBoys.size()];
+        i = 0;
+        for(BallBoy ballBoy : ballBoys){
+            ballBoysData[i] = ballBoy.toDisplayString();
+            i++;
+        }
+        
+        ballBoysListPane.setListData(ballBoysData);
+        
+        if(editedGame != null){
+            matchDateComboBox.setSelectedIndex(editedGame.getDate());
+            matchTimeComboBox.setSelectedIndex(editedGame.getTime());
+            addMatchCourtComboBox.setSelectedIndex(editedGame.getCourtIndex());
+        }
+        
+        addMatchDialog.setVisible(true);
+        addMatchDialog.setSize(470, 640);
+    }
+    
     private void setupAddSomebodyPanel(){
         int typeIndex = typeComboBox.getSelectedIndex();
         
@@ -797,6 +855,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMatchButton;
+    private javax.swing.JComboBox<String> addMatchCourtComboBox;
     private javax.swing.JDialog addMatchDialog;
     private javax.swing.JLabel addMatchInfoLabel;
     private javax.swing.JLabel addMatchInfoLabel1;
@@ -807,10 +866,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel ballBoyLabel;
     private javax.swing.JScrollPane ballBoyScrollPane;
     private javax.swing.JList<String> ballBoysListPane;
-    private javax.swing.JButton cancelAddButton;
+    private javax.swing.JButton cancelAddMatchButton;
     private javax.swing.JButton cancelAddSomebodyButton;
     private javax.swing.JButton cancelSaveButton;
-    private javax.swing.JButton confirmAddButton;
+    private javax.swing.JButton confirmAddMatchButton;
     private javax.swing.JButton confirmAddSomebodyButton;
     private javax.swing.JButton confirmSaveButton;
     private javax.swing.JComboBox<String> courtComboBox;
@@ -822,7 +881,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> levelComboBox;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JLabel lineRefereeLabel;
@@ -830,7 +888,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> mainRefereeComboBox;
     private javax.swing.JLabel mainRefereeLabel;
     private javax.swing.JComboBox<String> matchDateComboBox;
-    private javax.swing.JComboBox<String> matchDateComboBox1;
     private javax.swing.JLabel matchDateLabel;
     private javax.swing.JLabel matchDateLabel1;
     private javax.swing.JComboBox<String> matchTimeComboBox;
@@ -841,6 +898,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel nationalityLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTable planningTable;
     private javax.swing.JComboBox<String> player1ComboBox;
     private javax.swing.JComboBox<String> player2ComboBox;
     private javax.swing.JComboBox<String> player3ComboBox;
@@ -865,4 +923,11 @@ public class Main extends javax.swing.JFrame {
     static IBallBoyDAO ballBoyDAO;
     static IRefereeDAO refereeDAO;
     static IGameDAO gameDAO;
+    
+    static List<Player> players;
+    static List<BallBoy> ballBoys;
+    static List<Referee> referees;
+    static List<Game> games;
+    
+    static Game editedGame;
 }

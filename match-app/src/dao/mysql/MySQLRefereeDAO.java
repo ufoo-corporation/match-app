@@ -53,7 +53,7 @@ public class MySQLRefereeDAO implements IRefereeDAO {
     @Override
     public void createReferee(Referee referee) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO referee (id, first_name, namen nationality, level) VALUES (null, ?, ?, ?, ?");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO referee (id, first_name, name, nationality, level) VALUES (null, ?, ?, ?, ?)");
 
             statement.setString(1, referee.getFirstName());
             statement.setString(2, referee.getName());

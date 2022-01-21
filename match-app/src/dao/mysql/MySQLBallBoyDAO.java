@@ -53,7 +53,7 @@ public class MySQLBallBoyDAO implements IBallBoyDAO {
     @Override
     public void createBallBoy(BallBoy ballBoy) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO ball_boy (id, first_name, name) VALUES (null, ?, ?");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO ball_boy (id, first_name, name) VALUES (null, ?, ?)");
 
             statement.setString(1, ballBoy.getFirstName());
             statement.setString(2, ballBoy.getName());

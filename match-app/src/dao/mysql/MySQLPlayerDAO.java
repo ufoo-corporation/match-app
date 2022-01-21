@@ -41,7 +41,7 @@ public class MySQLPlayerDAO implements IPlayerDAO {
             statement.setInt(1, id);
             
             ResultSet rs = statement.executeQuery();
-            
+            rs.next();
             return playerFromDB(rs);
         } catch (SQLException ex){
             System.out.println(ex);
@@ -53,7 +53,7 @@ public class MySQLPlayerDAO implements IPlayerDAO {
     @Override
     public void createPlayer(Player player) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO player (id, first_name, name, nationality) VALUES (null, ?, ?, ?");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO player (id, first_name, name, nationality) VALUES (null, ?, ?, ?)");
 
             statement.setString(1, player.getFirstName());
             statement.setString(2, player.getName());
