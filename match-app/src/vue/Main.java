@@ -5,13 +5,18 @@
  */
 package vue;
 
-import dao.IPersonDAO;
-import dao.mysql.MySQLConnectionManager;
-import dao.mysql.MySQLPersonDAO;
+import dao.IPlayerDAO;
+import dao.IBallBoyDAO;
+import dao.IRefereeDAO;
+import dao.IGameDAO;
+import dao.mysql.MySQLManager;
+import dao.mysql.MySQLPlayerDAO;
+import dao.mysql.MySQLBallBoyDAO;
+import dao.mysql.MySQLRefereeDAO;
+import dao.mysql.MySQLGameDAO;
 import java.sql.Connection;
 import java.util.List;
 import metier.BallBoy;
-import metier.Person;
 import metier.Player;
 import metier.Referee;
 
@@ -631,8 +636,8 @@ public class Main extends javax.swing.JFrame {
         player3ComboBox.addItem("-- Aucun joueur --");
         player4ComboBox.addItem("-- Aucun joueur --");
         
-        List<Person> players = personDAO.getPeopleByType("PLAYER");
-        for(Person player : players){
+        List<Player> players = playerDAO.getPlayers();
+        for(Player player : players){
             String comboBoxValue = player.toDisplayString();
             player1ComboBox.addItem(comboBoxValue);
             player2ComboBox.addItem(comboBoxValue);
@@ -640,10 +645,10 @@ public class Main extends javax.swing.JFrame {
             player4ComboBox.addItem(comboBoxValue);
         }
         
-        List<Person> referees = personDAO.getPeopleByType("REFEREE");
+        List<Referee> referees = refereeDAO.getReferees();
         String[] refereesData = new String[referees.size()];
         int i = 0;
-        for(Person referee : referees){
+        for(Referee referee : referees){
             refereesData[i] = referee.toDisplayString();
             mainRefereeComboBox.addItem(referee.toDisplayString());
             i++;
@@ -651,10 +656,10 @@ public class Main extends javax.swing.JFrame {
         
         refereesListPane.setListData(refereesData);
         
-        List<Person> ballBoys = personDAO.getPeopleByType("BALLBOY");
+        List<BallBoy> ballBoys = ballBoyDAO.getBallBoys();
         String[] ballBoysData = new String[ballBoys.size()];
         i = 0;
-        for(Person ballBoy : ballBoys){
+        for(BallBoy ballBoy : ballBoys){
             ballBoysData[i] = ballBoy.toDisplayString();
             i++;
         }
@@ -698,8 +703,6 @@ public class Main extends javax.swing.JFrame {
     private void confirmAddSomebodyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddSomebodyButtonActionPerformed
         System.out.println(typeComboBox.getSelectedIndex());
 
-        Person personToAdd = null;
-
         String firstName = firstNameTextField.getText();
         String name = nameTextField.getText();
         String email = emailTextField.getText();
@@ -709,17 +712,15 @@ public class Main extends javax.swing.JFrame {
 
         switch(typeComboBox.getSelectedIndex()){
             case 0:
-            personToAdd = new BallBoy(-1, firstName, name);
-            break;
+                ballBoyDAO.createBallBoy(new BallBoy(-1, firstName, name));
+                break;
             case 1:
-            personToAdd = new Player(-1, firstName, name, nationality);
-            break;
+                playerDAO.createPlayer(new Player(-1, firstName, name, nationality));
+                break;
             case 2:
-            personToAdd = new Referee(-1, firstName, name, nationality, level);
-            break;
+                refereeDAO.createReferee(new Referee(-1, firstName, name, nationality, level));
+                break;
         }
-
-        personDAO.createPerson(personToAdd);
 
         addSomebodyDialog.setVisible(false);
     }//GEN-LAST:event_confirmAddSomebodyButtonActionPerformed
@@ -774,11 +775,21 @@ public class Main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            MySQLConnectionManager.connect();
-            Connection connection = MySQLConnectionManager.getConnection();
+            MySQLManager.connect();
+            Connection connection = MySQLManager.getConnection();
                         
-            personDAO = new MySQLPersonDAO();
-            personDAO.setConnection(connection);
+            playerDAO = new MySQLPlayerDAO();
+            playerDAO.setConnection(connection);
+            
+            ballBoyDAO = new MySQLBallBoyDAO();
+            ballBoyDAO.setConnection(connection);
+            
+            refereeDAO = new MySQLRefereeDAO();
+            refereeDAO.setConnection(connection);
+            
+            gameDAO = new MySQLGameDAO();
+            gameDAO.setConnection(connection);
+            gameDAO.setPlayerDAO(playerDAO);
             
             new Main().setVisible(true);
         });
@@ -850,5 +861,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 
-    static IPersonDAO personDAO;
+    static IPlayerDAO playerDAO;
+    static IBallBoyDAO ballBoyDAO;
+    static IRefereeDAO refereeDAO;
+    static IGameDAO gameDAO;
 }
