@@ -41,7 +41,7 @@ public class MySQLBallBoyDAO implements IBallBoyDAO {
             statement.setInt(1, id);
             
             ResultSet rs = statement.executeQuery();
-            
+            rs.next();
             return ballBoyFromDB(rs);
         } catch (SQLException ex){
             System.out.println(ex);

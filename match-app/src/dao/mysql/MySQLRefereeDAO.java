@@ -41,7 +41,7 @@ public class MySQLRefereeDAO implements IRefereeDAO {
             statement.setInt(1, id);
             
             ResultSet rs = statement.executeQuery();
-            
+            rs.next();
             return refereeFromDB(rs);
         } catch (SQLException ex){
             System.out.println(ex);

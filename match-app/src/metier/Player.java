@@ -32,4 +32,13 @@ public class Player {
     public String toDisplayString(){
         return String.format("%s %s", firstName, name.toUpperCase());
     }
+    
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof Player){
+            return id == ((Player) other).getId();
+        }
+        
+        return false;
+    }
 }

@@ -14,4 +14,10 @@ public interface IGameDAO {
     public void setConnection(Connection connexion);
     
     public void setPlayerDAO(IPlayerDAO playerDAO);
+    
+    public void setRefereeDAO(IRefereeDAO refereeDAO);
+    
+    public void setRefereeOfGame(IRefereeOfGameDAO refereeOfGameDAO);
+    
+    public void setBallBoyOfGame(IBallBoyOfGameDAO ballBoyOfGameDAO);
 }

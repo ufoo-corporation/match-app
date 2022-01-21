@@ -26,4 +26,13 @@ public class BallBoy {
     public String toDisplayString(){
         return String.format("%s %s", firstName, name.toUpperCase());
     }
+    
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof BallBoy){
+            return id == ((BallBoy) other).getId();
+        }
+        
+        return false;
+    }
 }

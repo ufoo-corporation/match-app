@@ -38,4 +38,13 @@ public class Referee {
     public String toDisplayString(){
         return String.format("%s %s", firstName, name.toUpperCase());
     }
+    
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof Referee){
+            return id == ((Referee) other).getId();
+        }
+        
+        return false;
+    }
 }

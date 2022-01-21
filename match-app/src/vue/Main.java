@@ -7,14 +7,19 @@ package vue;
 
 import dao.IPlayerDAO;
 import dao.IBallBoyDAO;
+import dao.IBallBoyOfGameDAO;
 import dao.IRefereeDAO;
 import dao.IGameDAO;
+import dao.IRefereeOfGameDAO;
 import dao.mysql.MySQLManager;
 import dao.mysql.MySQLPlayerDAO;
 import dao.mysql.MySQLBallBoyDAO;
+import dao.mysql.MySQLBallBoyOfGameDAO;
 import dao.mysql.MySQLRefereeDAO;
 import dao.mysql.MySQLGameDAO;
+import dao.mysql.MySQLRefereeOfGameDAO;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import metier.BallBoy;
 import metier.Player;
@@ -656,12 +661,9 @@ public class Main extends javax.swing.JFrame {
             int row = planningTable.rowAtPoint(evt.getPoint());
             int col = planningTable.columnAtPoint(evt.getPoint());
             if (row >= 0 && col >= 0) {
-                System.out.println(String.format("Row: %d , Col: %d", row, col));
-                
                 editedGame = null;
                 
                 for(Game game : games){
-                    System.out.println(String.format("time = %d & date = %d", game.getTime(), game.getDate()));
                     if(game.getDate() == col - 1 && game.getTime() == row){
                         editedGame = game;
                     }
@@ -716,8 +718,21 @@ public class Main extends javax.swing.JFrame {
         int courtIndex = addMatchCourtComboBox.getSelectedIndex();
         Player player1 = players.get(player1ComboBox.getSelectedIndex());
         Player player2 = players.get(player2ComboBox.getSelectedIndex());
+        Referee mainReferee = referees.get(mainRefereeComboBox.getSelectedIndex());
         
-        gameDAO.createGame(new Game(-1, date, time, courtIndex, player1, player2, null, null));
+        List<Referee> gameReferees = new ArrayList<>();
+        for(int index : refereesListPane.getSelectedIndices()){
+            System.out.println(index);
+            gameReferees.add(referees.get(index));
+        }
+        
+        List<BallBoy> gameBallBoys = new ArrayList<>();
+        for(int index : ballBoysListPane.getSelectedIndices()){
+            System.out.println(index);
+            gameBallBoys.add(ballBoys.get(index));
+        }
+        
+        gameDAO.createGame(new Game(-1, date, time, courtIndex, player1, player2, null, null, mainReferee, gameReferees, gameBallBoys));
         
         addMatchDialog.setVisible(false);
         setupMainPanel();
@@ -785,6 +800,38 @@ public class Main extends javax.swing.JFrame {
             matchDateComboBox.setSelectedIndex(editedGame.getDate());
             matchTimeComboBox.setSelectedIndex(editedGame.getTime());
             addMatchCourtComboBox.setSelectedIndex(editedGame.getCourtIndex());
+            
+            player1ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer1()));
+            player2ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer2()));
+            mainRefereeComboBox.setSelectedIndex(referees.indexOf(editedGame.getMainReferee()));
+            
+            int[] indices = new int[editedGame.getReferees().size()];
+            
+            i = 0;
+            for(Referee referee : editedGame.getReferees()){
+                indices[i] = referees.indexOf(referee);
+                i++;
+            }
+            
+            refereesListPane.setSelectedIndices(indices);
+            
+            indices = new int[editedGame.getBallBoys().size()];
+            
+            i = 0;
+            for(BallBoy ballBoy : editedGame.getBallBoys()){
+                indices[i] = ballBoys.indexOf(ballBoy);
+                i++;
+            }
+            
+            ballBoysListPane.setSelectedIndices(indices);
+        }else{
+            matchDateComboBox.setSelectedIndex(0);
+            matchTimeComboBox.setSelectedIndex(0);
+            addMatchCourtComboBox.setSelectedIndex(0);
+            
+            player1ComboBox.setSelectedIndex(0);
+            player2ComboBox.setSelectedIndex(0);
+            mainRefereeComboBox.setSelectedIndex(0);
         }
         
         addMatchDialog.setVisible(true);
@@ -845,9 +892,20 @@ public class Main extends javax.swing.JFrame {
             refereeDAO = new MySQLRefereeDAO();
             refereeDAO.setConnection(connection);
             
+            refereeOfGameDAO = new MySQLRefereeOfGameDAO();
+            refereeOfGameDAO.setConnection(connection);
+            refereeOfGameDAO.setRefereeDAO(refereeDAO);
+            
+            ballBoyOfGameDAO = new MySQLBallBoyOfGameDAO();
+            ballBoyOfGameDAO.setConnection(connection);
+            ballBoyOfGameDAO.setBallBoyDAO(ballBoyDAO);
+            
             gameDAO = new MySQLGameDAO();
             gameDAO.setConnection(connection);
             gameDAO.setPlayerDAO(playerDAO);
+            gameDAO.setRefereeDAO(refereeDAO);
+            gameDAO.setRefereeOfGame(refereeOfGameDAO);
+            gameDAO.setBallBoyOfGame(ballBoyOfGameDAO);
             
             new Main().setVisible(true);
         });
@@ -923,6 +981,8 @@ public class Main extends javax.swing.JFrame {
     static IBallBoyDAO ballBoyDAO;
     static IRefereeDAO refereeDAO;
     static IGameDAO gameDAO;
+    static IRefereeOfGameDAO refereeOfGameDAO;
+    static IBallBoyOfGameDAO ballBoyOfGameDAO;
     
     static List<Player> players;
     static List<BallBoy> ballBoys;
