@@ -86,11 +86,6 @@ public class MySQLPlayerDAO implements IPlayerDAO {
     }
 
     @Override
-    public void deletePlayer(int id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void setConnection(Connection connection) {
         this.connection = connection;
     }

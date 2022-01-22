@@ -11,7 +11,5 @@ public interface IBallBoyDAO {
     
     public void createBallBoy(BallBoy ballBoy);
     
-    public void deleteBallBoy(int id);
-    
     public void setConnection(Connection connexion);
 }

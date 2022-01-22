@@ -67,11 +67,6 @@ public class MySQLRefereeDAO implements IRefereeDAO {
     }
 
     @Override
-    public void deleteReferee(int id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void setConnection(Connection connection) {
         this.connection = connection;
     }

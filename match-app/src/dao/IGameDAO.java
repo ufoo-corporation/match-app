@@ -11,8 +11,6 @@ public interface IGameDAO {
     
     public void updateGame(Game game);
     
-    public void deleteGame(int id);
-    
     public void setConnection(Connection connexion);
     
     public void setPlayerDAO(IPlayerDAO playerDAO);

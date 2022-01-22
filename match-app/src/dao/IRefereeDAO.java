@@ -11,7 +11,5 @@ public interface IRefereeDAO {
     
     public void createReferee(Referee referee);
     
-    public void deleteReferee(int id);
-    
     public void setConnection(Connection connexion);
 }

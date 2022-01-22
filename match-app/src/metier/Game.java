@@ -3,24 +3,24 @@ package metier;
 import java.util.List;
 
 public class Game {
-    private int id;
-    private int date;
-    private int time;
-    private int courtIndex;
-    private int roundIndex;
-    private Player player1;
-    private Player player2;
-    private Player player3;
-    private Player player4;
-    private int score1Team1;
-    private int score2Team1;
-    private int score3Team1;
-    private int score1Team2;
-    private int score2Team2;
-    private int score3Team2;
-    private Referee mainReferee;
-    private List<Referee> referees;
-    private List<BallBoy> ballBoys;
+    private final int id;
+    private final int date;
+    private final int time;
+    private final int courtIndex;
+    private final int roundIndex;
+    private final Player player1;
+    private final Player player2;
+    private final Player player3;
+    private final Player player4;
+    private final int score1Team1;
+    private final int score2Team1;
+    private final int score3Team1;
+    private final int score1Team2;
+    private final int score2Team2;
+    private final int score3Team2;
+    private final Referee mainReferee;
+    private final List<Referee> referees;
+    private final List<BallBoy> ballBoys;
     
     public Game(int id, int date, int time, int courtIndex, int roundIndex, Player player1, Player player2, Player player3, Player player4, int score1Team1, int score2Team1, int score3Team1, int score1Team2, int score2Team2, int score3Team2, Referee mainReferee, List<Referee> referees, List<BallBoy> ballBoys){
         this.id = id;

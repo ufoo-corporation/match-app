@@ -1,9 +1,9 @@
 package metier;
 
 public class Referee {
-    private int id;
-    private String firstName;
-    private String name;
+    private final int id;
+    private final String firstName;
+    private final String name;
     private final String nationality;
     private final String level;
     

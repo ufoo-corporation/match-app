@@ -1,9 +1,9 @@
 package metier;
 
 public class BallBoy {
-    private int id;
-    private String firstName;
-    private String name;
+    private final int id;
+    private final String firstName;
+    private final String name;
     
     public BallBoy(int id, String firstName, String name) {
         this.id = id;

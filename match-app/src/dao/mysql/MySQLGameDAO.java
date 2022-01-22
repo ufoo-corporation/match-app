@@ -136,11 +136,6 @@ public class MySQLGameDAO implements IGameDAO {
     }
 
     @Override
-    public void deleteGame(int id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void setConnection(Connection connection) {
         this.connection = connection;
     }

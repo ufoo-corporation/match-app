@@ -13,7 +13,5 @@ public interface IPlayerDAO {
     
     public void createPlayer(Player player);
     
-    public void deletePlayer(int id);
-    
     public void setConnection(Connection connexion);
 }

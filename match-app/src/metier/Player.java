@@ -1,12 +1,12 @@
 package metier;
 
 public class Player {
-    private int id;
-    private String firstName;
-    private String name;
-    private String nationality;
-    private String login;
-    private String password;
+    private final int id;
+    private final String firstName;
+    private final String name;
+    private final String nationality;
+    private final String login;
+    private final String password;
     
     public Player(int id, String firstName, String name, String nationality, String login, String password) {
         this.id = id;
