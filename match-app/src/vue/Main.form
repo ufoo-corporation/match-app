@@ -40,37 +40,15 @@
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="confirmAddMatchButton" min="-2" pref="107" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                  <Component id="cancelAddMatchButton" min="-2" pref="107" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="mainRefereeComboBox" min="-2" pref="171" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lineRefereesScrollPane" min="-2" pref="171" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ballBoyScrollPane" min="-2" pref="177" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="player3ComboBox" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
-                                          <Component id="lineRefereeLabel" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="player3ComboBox" min="-2" pref="171" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ballBoyLabel" min="-2" pref="124" max="-2" attributes="0"/>
-                                          <Component id="player4ComboBox" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="player4ComboBox" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="player1ComboBox" min="-2" pref="171" max="-2" attributes="0"/>
@@ -81,15 +59,60 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Component id="mainRefereeLabel" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="mainRefereeComboBox" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="scoreTeam1Label" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="score1Team1Spinner" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="mainRefereeLabel" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="scoreTeam2Label" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="score1Team2Spinner" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="score2Team1Spinner" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="score3Team1Spinner" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="score2Team2Spinner" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="score3Team2Spinner" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   <Component id="addMatchInfoLabel" min="-2" pref="333" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lineRefereesScrollPane" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="lineRefereeLabel" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="ballBoyLabel" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Component id="ballBoyScrollPane" min="-2" pref="177" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="confirmAddMatchButton" min="-2" pref="107" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                          <Component id="cancelAddMatchButton" min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -130,28 +153,44 @@
                           </Group>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="score1Team1Spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="scoreTeam1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="score2Team1Spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="score3Team1Spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="scoreTeam2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="score1Team2Spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="score2Team2Spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="score3Team2Spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="mainRefereeLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="mainRefereeComboBox" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lineRefereeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ballBoyLabel" alignment="3" pref="19" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lineRefereesScrollPane" alignment="0" min="-2" pref="207" max="-2" attributes="0"/>
-                      <Component id="ballBoyScrollPane" alignment="0" min="-2" pref="207" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="lineRefereesScrollPane" min="-2" pref="207" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="addMatchInfoLabel" min="-2" pref="54" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="confirmAddMatchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cancelAddMatchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="ballBoyScrollPane" min="-2" pref="207" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="addMatchInfoLabel" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="confirmAddMatchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cancelAddMatchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -432,6 +471,58 @@
         <Component class="javax.swing.JLabel" name="playerLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Equipe 2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="scoreTeam1Label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Score &#xe9;quipe 1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="score1Team1Spinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="scoreTeam2Label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Score &#xe9;quipe 2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="score2Team1Spinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="score3Team1Spinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="score1Team2Spinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="score2Team2Spinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="score3Team2Spinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

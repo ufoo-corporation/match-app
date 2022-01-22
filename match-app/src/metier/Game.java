@@ -11,11 +11,17 @@ public class Game {
     private Player player2;
     private Player player3;
     private Player player4;
+    private int score1Team1;
+    private int score2Team1;
+    private int score3Team1;
+    private int score1Team2;
+    private int score2Team2;
+    private int score3Team2;
     private Referee mainReferee;
     private List<Referee> referees;
     private List<BallBoy> ballBoys;
     
-    public Game(int id, int date, int time, int courtIndex, Player player1, Player player2, Player player3, Player player4, Referee mainReferee, List<Referee> referees, List<BallBoy> ballBoys){
+    public Game(int id, int date, int time, int courtIndex, Player player1, Player player2, Player player3, Player player4, int score1Team1, int score2Team1, int score3Team1, int score1Team2, int score2Team2, int score3Team2, Referee mainReferee, List<Referee> referees, List<BallBoy> ballBoys){
         this.id = id;
         this.time = time;
         this.date = date;
@@ -24,6 +30,12 @@ public class Game {
         this.player2 = player2;
         this.player3 = player3;
         this.player4 = player4;
+        this.score1Team1 = score1Team1;
+        this.score2Team1 = score2Team1;
+        this.score3Team1 = score3Team1;
+        this.score1Team2 = score1Team2;
+        this.score2Team2 = score2Team2;
+        this.score3Team2 = score3Team2;
         this.mainReferee = mainReferee;
         this.referees = referees;
         this.ballBoys = ballBoys;
@@ -59,6 +71,30 @@ public class Game {
     
     public Player getPlayer4(){
         return player4;
+    }
+    
+    public int getScore1Team1(){
+        return score1Team1;
+    }
+    
+    public int getScore2Team1(){
+        return score2Team1;
+    }
+    
+    public int getScore3Team1(){
+        return score3Team1;
+    }
+    
+    public int getScore1Team2(){
+        return score1Team2;
+    }
+    
+    public int getScore2Team2(){
+        return score2Team2;
+    }
+    
+    public int getScore3Team2(){
+        return score3Team2;
     }
     
     public Referee getMainReferee(){

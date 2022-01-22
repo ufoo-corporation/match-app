@@ -75,6 +75,14 @@ public class Main extends javax.swing.JFrame {
         addMatchCourtComboBox = new javax.swing.JComboBox<>();
         matchDateLabel1 = new javax.swing.JLabel();
         playerLabel1 = new javax.swing.JLabel();
+        scoreTeam1Label = new javax.swing.JLabel();
+        score1Team1Spinner = new javax.swing.JSpinner();
+        scoreTeam2Label = new javax.swing.JLabel();
+        score2Team1Spinner = new javax.swing.JSpinner();
+        score3Team1Spinner = new javax.swing.JSpinner();
+        score1Team2Spinner = new javax.swing.JSpinner();
+        score2Team2Spinner = new javax.swing.JSpinner();
+        score3Team2Spinner = new javax.swing.JSpinner();
         saveCourtDialog = new javax.swing.JDialog();
         saveDateLabel = new javax.swing.JLabel();
         saveDateComboBox = new javax.swing.JComboBox<>();
@@ -183,6 +191,22 @@ public class Main extends javax.swing.JFrame {
 
         playerLabel1.setText("Equipe 2");
 
+        scoreTeam1Label.setText("Score équipe 1");
+
+        score1Team1Spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+
+        scoreTeam2Label.setText("Score équipe 2");
+
+        score2Team1Spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+
+        score3Team1Spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+
+        score1Team2Spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+
+        score2Team2Spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+
+        score3Team2Spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+
         javax.swing.GroupLayout addMatchDialogLayout = new javax.swing.GroupLayout(addMatchDialog.getContentPane());
         addMatchDialog.getContentPane().setLayout(addMatchDialogLayout);
         addMatchDialogLayout.setHorizontalGroup(
@@ -211,43 +235,60 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(addMatchTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(addMatchDialogLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(confirmAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(cancelAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(addMatchDialogLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addMatchDialogLayout.createSequentialGroup()
-                                .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(addMatchDialogLayout.createSequentialGroup()
-                                    .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(player3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lineRefereeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(player3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ballBoyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(player4ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(player4ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(addMatchDialogLayout.createSequentialGroup()
                                     .addComponent(player1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(playerLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(player2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(mainRefereeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addMatchDialogLayout.createSequentialGroup()
+                                        .addComponent(scoreTeam1Label)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(score1Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(mainRefereeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                        .addComponent(scoreTeam2Label)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(score1Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                        .addComponent(score2Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(score3Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                        .addComponent(score2Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(score3Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(addMatchDialogLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lineRefereeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ballBoyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(confirmAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(cancelAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addMatchDialogLayout.setVerticalGroup(
             addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,25 +320,38 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(player3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(player4ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(score1Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scoreTeam1Label)
+                    .addComponent(score2Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score3Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(scoreTeam2Label)
+                    .addComponent(score1Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score2Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score3Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainRefereeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lineRefereeLabel)
                     .addComponent(ballBoyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                        .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(confirmAddMatchButton)
+                            .addComponent(cancelAddMatchButton)))
                     .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmAddMatchButton)
-                    .addComponent(cancelAddMatchButton))
-                .addContainerGap())
+                .addGap(26, 26, 26))
         );
 
         addMatchInfoLabel.getAccessibleContext().setAccessibleName("");
@@ -718,6 +772,8 @@ public class Main extends javax.swing.JFrame {
         int courtIndex = addMatchCourtComboBox.getSelectedIndex();
         Player player1 = players.get(player1ComboBox.getSelectedIndex());
         Player player2 = players.get(player2ComboBox.getSelectedIndex());
+        Player player3 = player3ComboBox.getSelectedIndex() > 0 ? players.get(player3ComboBox.getSelectedIndex() - 1) : null;
+        Player player4 = player4ComboBox.getSelectedIndex() > 0 ? players.get(player4ComboBox.getSelectedIndex() - 1) : null;
         Referee mainReferee = referees.get(mainRefereeComboBox.getSelectedIndex());
         
         List<Referee> gameReferees = new ArrayList<>();
@@ -732,7 +788,14 @@ public class Main extends javax.swing.JFrame {
             gameBallBoys.add(ballBoys.get(index));
         }
         
-        gameDAO.createGame(new Game(-1, date, time, courtIndex, player1, player2, null, null, mainReferee, gameReferees, gameBallBoys));
+        int score1Team1 = (Integer) score1Team1Spinner.getValue();
+        int score2Team1 = (Integer) score2Team1Spinner.getValue();
+        int score3Team1 = (Integer) score3Team1Spinner.getValue();
+        int score1Team2 = (Integer) score1Team2Spinner.getValue();
+        int score2Team2 = (Integer) score2Team2Spinner.getValue();
+        int score3Team2 = (Integer) score3Team2Spinner.getValue();
+        
+        gameDAO.createGame(new Game(-1, date, time, courtIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys));
         
         addMatchDialog.setVisible(false);
         setupMainPanel();
@@ -803,6 +866,15 @@ public class Main extends javax.swing.JFrame {
             
             player1ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer1()));
             player2ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer2()));
+            
+            if(editedGame.getPlayer3() != null){
+                player3ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer3()) + 1);
+            }
+            
+            if(editedGame.getPlayer4() != null){
+                player4ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer4()) + 1);
+            }
+            
             mainRefereeComboBox.setSelectedIndex(referees.indexOf(editedGame.getMainReferee()));
             
             int[] indices = new int[editedGame.getReferees().size()];
@@ -824,6 +896,15 @@ public class Main extends javax.swing.JFrame {
             }
             
             ballBoysListPane.setSelectedIndices(indices);
+            
+            score1Team1Spinner.setValue(editedGame.getScore1Team1());
+            score2Team1Spinner.setValue(editedGame.getScore2Team1());
+            score3Team1Spinner.setValue(editedGame.getScore3Team1());
+            score1Team2Spinner.setValue(editedGame.getScore1Team2());
+            score2Team2Spinner.setValue(editedGame.getScore2Team2());
+            score3Team2Spinner.setValue(editedGame.getScore3Team2());
+            
+            addMatchTitleLabel.setText("Modifier un match");
         }else{
             matchDateComboBox.setSelectedIndex(0);
             matchTimeComboBox.setSelectedIndex(0);
@@ -832,10 +913,18 @@ public class Main extends javax.swing.JFrame {
             player1ComboBox.setSelectedIndex(0);
             player2ComboBox.setSelectedIndex(0);
             mainRefereeComboBox.setSelectedIndex(0);
+            addMatchTitleLabel.setText("Ajouter un match");
+            
+            score1Team1Spinner.setValue(0);
+            score2Team1Spinner.setValue(0);
+            score3Team1Spinner.setValue(0);
+            score1Team2Spinner.setValue(0);
+            score2Team2Spinner.setValue(0);
+            score3Team2Spinner.setValue(0);
         }
         
         addMatchDialog.setVisible(true);
-        addMatchDialog.setSize(470, 640);
+        addMatchDialog.setSize(420, 720);
     }
     
     private void setupAddSomebodyPanel(){
@@ -972,6 +1061,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> saveTimeComboBox;
     private javax.swing.JLabel saveTimeLabel;
     private javax.swing.JLabel saveTitleLabel;
+    private javax.swing.JSpinner score1Team1Spinner;
+    private javax.swing.JSpinner score1Team2Spinner;
+    private javax.swing.JSpinner score2Team1Spinner;
+    private javax.swing.JSpinner score2Team2Spinner;
+    private javax.swing.JSpinner score3Team1Spinner;
+    private javax.swing.JSpinner score3Team2Spinner;
+    private javax.swing.JLabel scoreTeam1Label;
+    private javax.swing.JLabel scoreTeam2Label;
     private javax.swing.JLabel title;
     private javax.swing.JComboBox<String> typeComboBox;
     private javax.swing.JLabel typeLabel;
