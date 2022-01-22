@@ -94,6 +94,48 @@ public class MySQLGameDAO implements IGameDAO {
     }
 
     @Override
+    public void updateGame(Game game) {
+        try{
+            PreparedStatement statement = connection.prepareStatement("UPDATE game SET date = ?, time = ?, court_index = ?, round_index = ?, player1 = ?, player2 = ?, player3 = ?, player4 = ?, score_team_1 = ?, score_team_2 = ?, main_referee = ? WHERE id = ?");
+            
+            statement.setInt(1, game.getDate());
+            statement.setInt(2, game.getTime());
+            statement.setInt(3, game.getCourtIndex());
+            statement.setInt(4, game.getRoundIndex());
+            statement.setInt(5, game.getPlayer1().getId());
+            statement.setInt(6, game.getPlayer2().getId());
+            
+            if(game.getPlayer3() == null){
+                statement.setNull(7, Types.INTEGER);
+            }else{
+                statement.setInt(7, game.getPlayer3().getId());
+            }
+            
+            if(game.getPlayer4() == null){
+                statement.setNull(8, Types.INTEGER);
+            }else{
+                statement.setInt(8, game.getPlayer4().getId());
+            }
+            
+            statement.setString(9, String.format("%d/%d/%d", game.getScore1Team1(), game.getScore2Team1(), game.getScore3Team1()));
+            statement.setString(10, String.format("%d/%d/%d", game.getScore1Team2(), game.getScore2Team2(), game.getScore3Team2()));
+            statement.setInt(11, game.getMainReferee().getId());
+            
+            statement.setInt(12, game.getId());
+            
+            statement.executeUpdate();
+            
+            refereeOfGameDAO.deleteRefereesOfGame(game.getId());
+            ballBoyOfGameDAO.deleteBallBoysOfGame(game.getId());
+            
+            refereeOfGameDAO.createRefereesOfGame(game.getId(), game.getReferees());
+            ballBoyOfGameDAO.createBallBoysOfGame(game.getId(), game.getBallBoys());
+        } catch (SQLException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void deleteGame(int id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

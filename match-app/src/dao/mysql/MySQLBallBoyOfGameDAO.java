@@ -55,7 +55,15 @@ public class MySQLBallBoyOfGameDAO implements IBallBoyOfGameDAO{
 
     @Override
     public void deleteBallBoysOfGame(int gameId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM ball_boy_of_game where game_id = ?");
+
+            statement.setInt(1, gameId);
+            
+            statement.executeUpdate();
+        } catch (SQLException ex){
+            System.out.println(ex);
+        }
     }
 
     @Override

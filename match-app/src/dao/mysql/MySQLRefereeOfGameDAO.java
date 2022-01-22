@@ -56,7 +56,7 @@ public class MySQLRefereeOfGameDAO implements IRefereeOfGameDAO {
     @Override
     public void deleteRefereesOfGame(int gameId) {
         try{
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM referee_of_game where id = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM referee_of_game where game_id = ?");
 
             statement.setInt(1, gameId);
             

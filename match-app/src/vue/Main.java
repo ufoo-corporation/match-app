@@ -833,10 +833,9 @@ public class Main extends javax.swing.JFrame {
                     }
                 }
                 
-                if(editedGame != null){
+                if(editedGame != null && connectedUserType == "ADMIN"){
                     openAddMatchPanel();
                 }
-                
             }
         }
     }//GEN-LAST:event_planningTableMouseClicked
@@ -877,11 +876,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelAddMatchButtonActionPerformed
 
     private void confirmAddMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddMatchButtonActionPerformed
+        int id = editedGame == null ? -1 : editedGame.getId();
         int date = matchDateComboBox.getSelectedIndex();
         int time = matchTimeComboBox.getSelectedIndex();
         int courtIndex = addMatchCourtComboBox.getSelectedIndex();
         int roundIndex = roundComboBox.getSelectedIndex();
-        System.out.println(roundIndex);
         
         Player player1 = players.get(player1ComboBox.getSelectedIndex());
         Player player2 = players.get(player2ComboBox.getSelectedIndex());
@@ -906,7 +905,13 @@ public class Main extends javax.swing.JFrame {
         int score2Team2 = (Integer) score2Team2Spinner.getValue();
         int score3Team2 = (Integer) score3Team2Spinner.getValue();
         
-        gameDAO.createGame(new Game(-1, date, time, courtIndex, roundIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys));
+        Game newGame = new Game(id, date, time, courtIndex, roundIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys);
+        
+        if(editedGame != null){
+            gameDAO.updateGame(newGame);
+        }else{
+            gameDAO.createGame(newGame);
+        }
         
         addMatchDialog.setVisible(false);
         setupMainPanel();

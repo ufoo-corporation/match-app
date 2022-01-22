@@ -9,6 +9,8 @@ public interface IGameDAO {
     
     public void createGame(Game game);
     
+    public void updateGame(Game game);
+    
     public void deleteGame(int id);
     
     public void setConnection(Connection connexion);
