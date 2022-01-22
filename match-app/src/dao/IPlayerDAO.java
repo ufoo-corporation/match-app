@@ -9,6 +9,8 @@ public interface IPlayerDAO {
     
     public Player getPlayer(int id);
     
+    public Player getPlayerByLogin(String login);
+    
     public void createPlayer(Player player);
     
     public void deletePlayer(int id);

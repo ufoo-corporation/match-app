@@ -5,12 +5,16 @@ public class Player {
     private String firstName;
     private String name;
     private String nationality;
+    private String login;
+    private String password;
     
-    public Player(int id, String firstName, String name, String nationality) {
+    public Player(int id, String firstName, String name, String nationality, String login, String password) {
         this.id = id;
         this.firstName = firstName;
         this.name = name;
         this.nationality = nationality;
+        this.login = login;
+        this.password = password;
     }
 
     public int getId(){
@@ -27,6 +31,14 @@ public class Player {
     
     public String getNationality(){
         return nationality;
+    }
+    
+    public String getLogin(){
+        return login;
+    }
+    
+    public String getPassword(){
+        return password;
     }
     
     public String toDisplayString(){

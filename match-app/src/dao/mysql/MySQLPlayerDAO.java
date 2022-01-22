@@ -51,13 +51,33 @@ public class MySQLPlayerDAO implements IPlayerDAO {
     }
 
     @Override
+    public Player getPlayerByLogin(String login) {
+        try{
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM player WHERE login = ?");
+            
+            statement.setString(1, login);
+            
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return playerFromDB(rs);
+            }
+        } catch (SQLException ex){
+            System.out.println(ex);
+        }   
+        
+        return null;
+    }
+
+    @Override
     public void createPlayer(Player player) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO player (id, first_name, name, nationality) VALUES (null, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO player (id, first_name, name, nationality, login, password) VALUES (null, ?, ?, ?, ?, ?)");
 
             statement.setString(1, player.getFirstName());
             statement.setString(2, player.getName());
             statement.setString(3, player.getNationality());
+            statement.setString(4, player.getLogin());
+            statement.setString(5, player.getPassword());
             
             statement.executeUpdate();
         } catch (SQLException ex){
@@ -81,8 +101,10 @@ public class MySQLPlayerDAO implements IPlayerDAO {
             String firstName = rs.getString("first_name");
             String name = rs.getString("name");
             String nationality = rs.getString("nationality");
+            String login = rs.getString("login");
+            String password = rs.getString("password");
             
-            return new Player(id, firstName, name, nationality);
+            return new Player(id, firstName, name, nationality, login, password);
         }catch(SQLException ex){
             System.out.println(ex);
         }

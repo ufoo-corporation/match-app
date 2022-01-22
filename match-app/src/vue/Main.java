@@ -37,6 +37,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {        
         initComponents();
+        setConnectedUserType("");
         setupMainPanel();
     }
 
@@ -107,19 +108,29 @@ public class Main extends javax.swing.JFrame {
         levelComboBox = new javax.swing.JComboBox<>();
         confirmAddSomebodyButton = new javax.swing.JButton();
         cancelAddSomebodyButton = new javax.swing.JButton();
-        emailLabe = new javax.swing.JLabel();
-        emailTextField = new javax.swing.JTextField();
+        playerLoginlLabel = new javax.swing.JLabel();
+        playerLoginlTextField = new javax.swing.JTextField();
         typeLabel = new javax.swing.JLabel();
         typeComboBox = new javax.swing.JComboBox<>();
         addMatchInfoLabel1 = new javax.swing.JLabel();
+        generateLoginButton = new javax.swing.JButton();
+        connectionDialog = new javax.swing.JDialog();
+        connectionTitleLabel = new javax.swing.JLabel();
+        userLoginLabel = new javax.swing.JLabel();
+        userLoginTextField = new javax.swing.JTextField();
+        userPasswordLabel = new javax.swing.JLabel();
+        userPassword = new javax.swing.JPasswordField();
+        confirmConnectionButton = new javax.swing.JButton();
+        cancleConnectionButton = new javax.swing.JButton();
         title = new javax.swing.JLabel();
         courtComboBox = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         planningTable = new javax.swing.JTable();
         addMatchButton = new javax.swing.JButton();
+        addSomebodyButton = new javax.swing.JButton();
         saveCourtButton = new javax.swing.JButton();
-        addSomebodytButton = new javax.swing.JButton();
+        addMatchButton1 = new javax.swing.JButton();
 
         addMatchDialog.setAlwaysOnTop(true);
         addMatchDialog.setResizable(false);
@@ -428,6 +439,8 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        addSomebodyDialog.setAlwaysOnTop(true);
+
         addSomebodyTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addSomebodyTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addSomebodyTitle.setText("Ajouter une personne");
@@ -463,7 +476,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        emailLabe.setText("Email");
+        playerLoginlLabel.setText("Identifiant");
 
         typeLabel.setText("Status");
 
@@ -476,6 +489,8 @@ public class Main extends javax.swing.JFrame {
 
         addMatchInfoLabel1.setText("<html><p style=\"color:red;\">Informations si les valeurs rentrées ne sont pas correctes et risquent de dépasser<p><html>");
 
+        generateLoginButton.setText("Générer automatiquement");
+
         javax.swing.GroupLayout addSomebodyDialogLayout = new javax.swing.GroupLayout(addSomebodyDialog.getContentPane());
         addSomebodyDialog.getContentPane().setLayout(addSomebodyDialogLayout);
         addSomebodyDialogLayout.setHorizontalGroup(
@@ -483,6 +498,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(addSomebodyDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(generateLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(addSomebodyDialogLayout.createSequentialGroup()
                         .addComponent(confirmAddSomebodyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -501,8 +517,8 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(generatePasswordButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nationalityComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(levelComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(emailLabe, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(playerLoginlLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(playerLoginlTextField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(typeLabel, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(183, Short.MAX_VALUE))
@@ -525,9 +541,11 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailLabe)
+                .addComponent(playerLoginlLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(playerLoginlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(generateLoginButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -548,7 +566,73 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmAddSomebodyButton)
                     .addComponent(cancelAddSomebodyButton))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
+
+        connectionDialog.setAlwaysOnTop(true);
+        connectionDialog.setResizable(false);
+
+        connectionTitleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        connectionTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        connectionTitleLabel.setText("Connexion");
+
+        userLoginLabel.setText("Identifiant");
+
+        userPasswordLabel.setText("Mot de passe");
+
+        confirmConnectionButton.setText("Se connecter");
+        confirmConnectionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmConnectionButtonActionPerformed(evt);
+            }
+        });
+
+        cancleConnectionButton.setText("Annuler");
+        cancleConnectionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancleConnectionButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout connectionDialogLayout = new javax.swing.GroupLayout(connectionDialog.getContentPane());
+        connectionDialog.getContentPane().setLayout(connectionDialogLayout);
+        connectionDialogLayout.setHorizontalGroup(
+            connectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(connectionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(connectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(connectionTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userLoginTextField)
+                    .addComponent(userPassword)
+                    .addGroup(connectionDialogLayout.createSequentialGroup()
+                        .addGroup(connectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userLoginLabel)
+                            .addComponent(userPasswordLabel)
+                            .addGroup(connectionDialogLayout.createSequentialGroup()
+                                .addComponent(confirmConnectionButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancleConnectionButton)))
+                        .addGap(0, 210, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        connectionDialogLayout.setVerticalGroup(
+            connectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(connectionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(connectionTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userLoginLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userLoginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userPasswordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(connectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmConnectionButton)
+                    .addComponent(cancleConnectionButton))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -628,6 +712,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        addSomebodyButton.setText("Ajouter quelqu'un");
+        addSomebodyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSomebodyButtonActionPerformed(evt);
+            }
+        });
+
         saveCourtButton.setText("Réserver un terrain");
         saveCourtButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -635,10 +726,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        addSomebodytButton.setText("Ajouter quelqu'un");
-        addSomebodytButton.addActionListener(new java.awt.event.ActionListener() {
+        addMatchButton1.setText("Connexion");
+        addMatchButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSomebodytButtonActionPerformed(evt);
+                addMatchButton1ActionPerformed(evt);
             }
         });
 
@@ -650,18 +741,22 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(saveCourtButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addSomebodyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addMatchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addSomebodytButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(saveCourtButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(courtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addMatchButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -669,7 +764,9 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(courtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(courtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMatchButton1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
@@ -677,12 +774,13 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addMatchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveCourtButton)
+                        .addComponent(addSomebodyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addSomebodytButton)))
+                        .addComponent(saveCourtButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -703,12 +801,12 @@ public class Main extends javax.swing.JFrame {
         saveCourtDialog.setVisible(false);
     }//GEN-LAST:event_cancelSaveButtonActionPerformed
 
-    private void addSomebodytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSomebodytButtonActionPerformed
+    private void addSomebodyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSomebodyButtonActionPerformed
         setupAddSomebodyPanel();
         
         addSomebodyDialog.setVisible(true);
         addSomebodyDialog.setSize(470, 640);
-    }//GEN-LAST:event_addSomebodytButtonActionPerformed
+    }//GEN-LAST:event_addSomebodyButtonActionPerformed
 
     private void planningTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_planningTableMouseClicked
         if(evt.getClickCount() == 2){
@@ -738,8 +836,8 @@ public class Main extends javax.swing.JFrame {
     private void confirmAddSomebodyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddSomebodyButtonActionPerformed
         String firstName = firstNameTextField.getText();
         String name = nameTextField.getText();
-        String email = emailTextField.getText();
-        char[] password = passwordField.getPassword();
+        String login = playerLoginlTextField.getText();
+        String password = String.valueOf(passwordField.getPassword());
         String nationality = (String) nationalityComboBox.getSelectedItem();
         String level = (String) levelComboBox.getSelectedItem();
 
@@ -748,7 +846,7 @@ public class Main extends javax.swing.JFrame {
                 ballBoyDAO.createBallBoy(new BallBoy(-1, firstName, name));
                 break;
             case 1:
-                playerDAO.createPlayer(new Player(-1, firstName, name, nationality));
+                playerDAO.createPlayer(new Player(-1, firstName, name, nationality, login, password));
                 break;
             case 2:
                 refereeDAO.createReferee(new Referee(-1, firstName, name, nationality, level));
@@ -778,13 +876,11 @@ public class Main extends javax.swing.JFrame {
         
         List<Referee> gameReferees = new ArrayList<>();
         for(int index : refereesListPane.getSelectedIndices()){
-            System.out.println(index);
             gameReferees.add(referees.get(index));
         }
         
         List<BallBoy> gameBallBoys = new ArrayList<>();
         for(int index : ballBoysListPane.getSelectedIndices()){
-            System.out.println(index);
             gameBallBoys.add(ballBoys.get(index));
         }
         
@@ -804,6 +900,36 @@ public class Main extends javax.swing.JFrame {
     private void courtComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courtComboBoxActionPerformed
         setupMainPanel();
     }//GEN-LAST:event_courtComboBoxActionPerformed
+
+    private void addMatchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchButton1ActionPerformed
+        userLoginTextField.setText("");
+        userPassword.setText("");
+        
+        connectionDialog.setSize(400, 220);
+        connectionDialog.setVisible(true);
+    }//GEN-LAST:event_addMatchButton1ActionPerformed
+
+    private void confirmConnectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmConnectionButtonActionPerformed
+        String password = String.valueOf(userPassword.getPassword());
+        
+        if(userLoginTextField.getText().equals("admin") && password.equals("admin")){
+            setConnectedUserType("ADMIN");
+        
+            connectionDialog.setVisible(false);
+        } else {
+            Player loggedPlayer = playerDAO.getPlayerByLogin(userLoginTextField.getText());
+            
+            if(loggedPlayer != null && loggedPlayer.getPassword().equals(password)){
+                setConnectedUserType("PLAYER");
+        
+                connectionDialog.setVisible(false);
+            }
+        }       
+    }//GEN-LAST:event_confirmConnectionButtonActionPerformed
+
+    private void cancleConnectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancleConnectionButtonActionPerformed
+        connectionDialog.setVisible(false);
+    }//GEN-LAST:event_cancleConnectionButtonActionPerformed
 
     private void setupMainPanel(){
         games = gameDAO.getGames(courtComboBox.getSelectedIndex());
@@ -927,13 +1053,24 @@ public class Main extends javax.swing.JFrame {
         addMatchDialog.setSize(420, 720);
     }
     
+    private void setConnectedUserType(String userType){
+        connectedUserType = userType;
+        
+        boolean isAdmin = connectedUserType.equals("ADMIN");
+        boolean isPlayer = connectedUserType.equals("PLAYER");
+        
+        addMatchButton.setEnabled(isAdmin);
+        addSomebodyButton.setEnabled(isAdmin);
+        saveCourtButton.setEnabled(isPlayer);
+    }
+    
     private void setupAddSomebodyPanel(){
         int typeIndex = typeComboBox.getSelectedIndex();
         
         boolean isPlayer = typeIndex == 1;
         boolean isReferee = typeIndex == 2;
         
-        emailTextField.setEnabled(isPlayer);
+        playerLoginlTextField.setEnabled(isPlayer);
         passwordField.setEnabled(isPlayer);
         generatePasswordButton.setEnabled(isPlayer);
         nationalityComboBox.setEnabled(isPlayer || isReferee);
@@ -1002,28 +1139,32 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMatchButton;
+    private javax.swing.JButton addMatchButton1;
     private javax.swing.JComboBox<String> addMatchCourtComboBox;
     private javax.swing.JDialog addMatchDialog;
     private javax.swing.JLabel addMatchInfoLabel;
     private javax.swing.JLabel addMatchInfoLabel1;
     private javax.swing.JLabel addMatchTitleLabel;
+    private javax.swing.JButton addSomebodyButton;
     private javax.swing.JDialog addSomebodyDialog;
     private javax.swing.JLabel addSomebodyTitle;
-    private javax.swing.JButton addSomebodytButton;
     private javax.swing.JLabel ballBoyLabel;
     private javax.swing.JScrollPane ballBoyScrollPane;
     private javax.swing.JList<String> ballBoysListPane;
     private javax.swing.JButton cancelAddMatchButton;
     private javax.swing.JButton cancelAddSomebodyButton;
     private javax.swing.JButton cancelSaveButton;
+    private javax.swing.JButton cancleConnectionButton;
     private javax.swing.JButton confirmAddMatchButton;
     private javax.swing.JButton confirmAddSomebodyButton;
+    private javax.swing.JButton confirmConnectionButton;
     private javax.swing.JButton confirmSaveButton;
+    private javax.swing.JDialog connectionDialog;
+    private javax.swing.JLabel connectionTitleLabel;
     private javax.swing.JComboBox<String> courtComboBox;
-    private javax.swing.JLabel emailLabe;
-    private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
+    private javax.swing.JButton generateLoginButton;
     private javax.swing.JButton generatePasswordButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -1052,6 +1193,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> player4ComboBox;
     private javax.swing.JLabel playerLabel;
     private javax.swing.JLabel playerLabel1;
+    private javax.swing.JLabel playerLoginlLabel;
+    private javax.swing.JTextField playerLoginlTextField;
     private javax.swing.JList<String> refereesListPane;
     private javax.swing.JButton saveCourtButton;
     private javax.swing.JDialog saveCourtDialog;
@@ -1072,6 +1215,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel title;
     private javax.swing.JComboBox<String> typeComboBox;
     private javax.swing.JLabel typeLabel;
+    private javax.swing.JLabel userLoginLabel;
+    private javax.swing.JTextField userLoginTextField;
+    private javax.swing.JPasswordField userPassword;
+    private javax.swing.JLabel userPasswordLabel;
     // End of variables declaration//GEN-END:variables
 
     static IPlayerDAO playerDAO;
@@ -1087,4 +1234,5 @@ public class Main extends javax.swing.JFrame {
     static List<Game> games;
     
     static Game editedGame;
+    static String connectedUserType;
 }
