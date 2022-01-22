@@ -27,7 +27,7 @@ public class MySQLGameDAO implements IGameDAO {
     @Override
     public List<Game> getGames(int courtIndex) {
         try{
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM game WHERE courtIndex = ? order by time, date");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM game WHERE court_index = ? order by time, date");
             statement.setInt(1, courtIndex);
             
             ResultSet rs = statement.executeQuery();
@@ -49,33 +49,34 @@ public class MySQLGameDAO implements IGameDAO {
     @Override
     public void createGame(Game game) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO game (id, date, time, courtIndex, player1, player2, player3, player4, score_team_1, score_team_2, main_referee) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO game (id, date, time, court_index, round_index, player1, player2, player3, player4, score_team_1, score_team_2, main_referee) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
             statement.setInt(1, game.getDate());
             statement.setInt(2, game.getTime());
             statement.setInt(3, game.getCourtIndex());
-            statement.setInt(4, game.getPlayer1().getId());
-            statement.setInt(5, game.getPlayer2().getId());
+            statement.setInt(4, game.getRoundIndex());
+            statement.setInt(5, game.getPlayer1().getId());
+            statement.setInt(6, game.getPlayer2().getId());
             
             if(game.getPlayer3() == null){
-                statement.setNull(6, Types.INTEGER);
+                statement.setNull(7, Types.INTEGER);
             }else{
-                statement.setInt(6, game.getPlayer3().getId());
+                statement.setInt(7, game.getPlayer3().getId());
             }
             
             if(game.getPlayer4() == null){
-                statement.setNull(7, Types.INTEGER);
+                statement.setNull(8, Types.INTEGER);
             }else{
-                statement.setInt(7, game.getPlayer4().getId());
+                statement.setInt(8, game.getPlayer4().getId());
             }
             
-            statement.setString(8, String.format("%d/%d/%d", game.getScore1Team1(), game.getScore2Team1(), game.getScore3Team1()));
-            statement.setString(9, String.format("%d/%d/%d", game.getScore1Team2(), game.getScore2Team2(), game.getScore3Team2()));
-            statement.setInt(10, game.getMainReferee().getId());
+            statement.setString(9, String.format("%d/%d/%d", game.getScore1Team1(), game.getScore2Team1(), game.getScore3Team1()));
+            statement.setString(10, String.format("%d/%d/%d", game.getScore1Team2(), game.getScore2Team2(), game.getScore3Team2()));
+            statement.setInt(11, game.getMainReferee().getId());
             
             statement.executeUpdate();
             
-            statement = connection.prepareStatement("SELECT id FROM game WHERE date = ? and time = ? and courtIndex = ?");
+            statement = connection.prepareStatement("SELECT id FROM game WHERE date = ? and time = ? and court_index = ?");
             
             statement.setInt(1, game.getDate());
             statement.setInt(2, game.getTime());
@@ -127,7 +128,8 @@ public class MySQLGameDAO implements IGameDAO {
             int id = rs.getInt("id");
             int date = rs.getInt("date");
             int time = rs.getInt("time");
-            int courtIndex = rs.getInt("courtIndex");
+            int courtIndex = rs.getInt("court_index");
+            int roundIndex = rs.getInt("round_index");
             int player1Id = rs.getInt("player1");
             int player2Id = rs.getInt("player2");
             
@@ -172,7 +174,7 @@ public class MySQLGameDAO implements IGameDAO {
             List<Referee> referees = refereeOfGameDAO.getRefereesOfGame(id);
             List<BallBoy> ballBoys = ballBoyOfGameDAO.getBallBoysOfGame(id);
             
-            return new Game(id, date, time, courtIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, referees, ballBoys);
+            return new Game(id, date, time, courtIndex, roundIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, referees, ballBoys);
         }catch(SQLException ex){
             System.out.println(ex);
         }

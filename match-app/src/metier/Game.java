@@ -7,6 +7,7 @@ public class Game {
     private int date;
     private int time;
     private int courtIndex;
+    private int roundIndex;
     private Player player1;
     private Player player2;
     private Player player3;
@@ -21,11 +22,12 @@ public class Game {
     private List<Referee> referees;
     private List<BallBoy> ballBoys;
     
-    public Game(int id, int date, int time, int courtIndex, Player player1, Player player2, Player player3, Player player4, int score1Team1, int score2Team1, int score3Team1, int score1Team2, int score2Team2, int score3Team2, Referee mainReferee, List<Referee> referees, List<BallBoy> ballBoys){
+    public Game(int id, int date, int time, int courtIndex, int roundIndex, Player player1, Player player2, Player player3, Player player4, int score1Team1, int score2Team1, int score3Team1, int score1Team2, int score2Team2, int score3Team2, Referee mainReferee, List<Referee> referees, List<BallBoy> ballBoys){
         this.id = id;
         this.time = time;
         this.date = date;
         this.courtIndex = courtIndex;
+        this.roundIndex = roundIndex;
         this.player1 = player1;
         this.player2 = player2;
         this.player3 = player3;
@@ -55,6 +57,10 @@ public class Game {
     
     public int getCourtIndex(){
         return courtIndex;
+    }
+    
+    public int getRoundIndex(){
+        return roundIndex;
     }
     
     public Player getPlayer1(){

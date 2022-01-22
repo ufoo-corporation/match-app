@@ -37,7 +37,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {        
         initComponents();
-        setConnectedUserType("");
+        setConnectedUserType("ADMIN");
         setupMainPanel();
     }
 
@@ -84,6 +84,8 @@ public class Main extends javax.swing.JFrame {
         score1Team2Spinner = new javax.swing.JSpinner();
         score2Team2Spinner = new javax.swing.JSpinner();
         score3Team2Spinner = new javax.swing.JSpinner();
+        roundLabel = new javax.swing.JLabel();
+        roundComboBox = new javax.swing.JComboBox<>();
         saveCourtDialog = new javax.swing.JDialog();
         saveDateLabel = new javax.swing.JLabel();
         saveDateComboBox = new javax.swing.JComboBox<>();
@@ -218,6 +220,10 @@ public class Main extends javax.swing.JFrame {
 
         score3Team2Spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
 
+        roundLabel.setText("Tour");
+
+        roundComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "16es", "8es", "quarts", "demis", "finale" }));
+
         javax.swing.GroupLayout addMatchDialogLayout = new javax.swing.GroupLayout(addMatchDialog.getContentPane());
         addMatchDialog.getContentPane().setLayout(addMatchDialogLayout);
         addMatchDialogLayout.setHorizontalGroup(
@@ -236,7 +242,11 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(addMatchDialogLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(playerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addComponent(matchDateLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
@@ -315,7 +325,9 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundLabel)
+                    .addComponent(roundComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playerLabel)
@@ -868,6 +880,9 @@ public class Main extends javax.swing.JFrame {
         int date = matchDateComboBox.getSelectedIndex();
         int time = matchTimeComboBox.getSelectedIndex();
         int courtIndex = addMatchCourtComboBox.getSelectedIndex();
+        int roundIndex = roundComboBox.getSelectedIndex();
+        System.out.println(roundIndex);
+        
         Player player1 = players.get(player1ComboBox.getSelectedIndex());
         Player player2 = players.get(player2ComboBox.getSelectedIndex());
         Player player3 = player3ComboBox.getSelectedIndex() > 0 ? players.get(player3ComboBox.getSelectedIndex() - 1) : null;
@@ -891,7 +906,7 @@ public class Main extends javax.swing.JFrame {
         int score2Team2 = (Integer) score2Team2Spinner.getValue();
         int score3Team2 = (Integer) score3Team2Spinner.getValue();
         
-        gameDAO.createGame(new Game(-1, date, time, courtIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys));
+        gameDAO.createGame(new Game(-1, date, time, courtIndex, roundIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys));
         
         addMatchDialog.setVisible(false);
         setupMainPanel();
@@ -989,6 +1004,7 @@ public class Main extends javax.swing.JFrame {
             matchDateComboBox.setSelectedIndex(editedGame.getDate());
             matchTimeComboBox.setSelectedIndex(editedGame.getTime());
             addMatchCourtComboBox.setSelectedIndex(editedGame.getCourtIndex());
+            roundComboBox.setSelectedIndex(editedGame.getRoundIndex());
             
             player1ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer1()));
             player2ComboBox.setSelectedIndex(players.indexOf(editedGame.getPlayer2()));
@@ -1035,6 +1051,7 @@ public class Main extends javax.swing.JFrame {
             matchDateComboBox.setSelectedIndex(0);
             matchTimeComboBox.setSelectedIndex(0);
             addMatchCourtComboBox.setSelectedIndex(0);
+            roundComboBox.setSelectedIndex(0);
             
             player1ComboBox.setSelectedIndex(0);
             player2ComboBox.setSelectedIndex(0);
@@ -1196,6 +1213,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel playerLoginlLabel;
     private javax.swing.JTextField playerLoginlTextField;
     private javax.swing.JList<String> refereesListPane;
+    private javax.swing.JComboBox<String> roundComboBox;
+    private javax.swing.JLabel roundLabel;
     private javax.swing.JButton saveCourtButton;
     private javax.swing.JDialog saveCourtDialog;
     private javax.swing.JLabel saveCourtInfoLabel;
