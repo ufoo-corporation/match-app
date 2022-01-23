@@ -233,7 +233,7 @@ public class Main extends javax.swing.JFrame {
 
         roundLabel.setText("Tour");
 
-        roundComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "16es", "8es", "quarts", "demis", "finale" }));
+        roundComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Qualitfications - 8es", "Qualifications - Quarts", "16es", "8es", "Quarts", "Demis", "Finale" }));
 
         javax.swing.GroupLayout addGameDialogLayout = new javax.swing.GroupLayout(addGameDialog.getContentPane());
         addGameDialog.getContentPane().setLayout(addGameDialogLayout);
@@ -953,7 +953,9 @@ public class Main extends javax.swing.JFrame {
         int score2Team2 = (Integer) score2Team2Spinner.getValue();
         int score3Team2 = (Integer) score3Team2Spinner.getValue();
         
-        if(gameDAO.gameExistAt(date, time, courtIndex)){
+        if(editedGame == null && gameDAO.gameExistAt(date, time, courtIndex)){
+            addMatchInfoLabel.setText(toErrorString("Un match existe déjà sur cet horraire"));
+        }else if(editedGame != null && gameDAO.getGameAt(date, time, courtIndex) != null && gameDAO.getGameAt(date, time, courtIndex).getId() != editedGame.getId()){
             addMatchInfoLabel.setText(toErrorString("Un match existe déjà sur cet horraire"));
         }else if(reservationDAO.reservationExistAt(date, time, courtIndex)){
             addMatchInfoLabel.setText(toErrorString("Le court est réservé sur cet horraire"));
@@ -963,6 +965,8 @@ public class Main extends javax.swing.JFrame {
             addMatchInfoLabel.setText(toErrorString("Le joueur joue contre lui-même"));
         }else if(player3 != null && (player1.equals(player2) || player1.equals(player3) || player1.equals(player4) || player2.equals(player3) || player2.equals(player4) || player3.equals(player4))){
             addMatchInfoLabel.setText(toErrorString("Un joueur est renseigné plusieur fois"));
+        }else if(!mainReferee.getLevel().equals("ITT1 ou +")){
+            addMatchInfoLabel.setText(toErrorString("L'arbitre de chaise doit de catégorie ITT1 ou +"));
         }else if(gameReferees.contains(mainReferee)){
             addMatchInfoLabel.setText(toErrorString("L'arbitre de chaise ne peut être en même temps un arbitre de ligne"));
         }else if(gameReferees.size() != 1){

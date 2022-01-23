@@ -47,21 +47,28 @@ public class MySQLGameDAO implements IGameDAO {
     }
 
     @Override
-    public boolean gameExistAt(int date, int time, int courtIndex) {
+    public Game getGameAt(int date, int time, int courtIndex) {
         try{
-            PreparedStatement statement = connection.prepareStatement("SELECT id FROM game WHERE date = ? and time = ? and court_index = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM game WHERE date = ? and time = ? and court_index = ?");
             statement.setInt(1, date);
             statement.setInt(2, time);
             statement.setInt(3, courtIndex);
             
             ResultSet rs = statement.executeQuery();
             
-            return rs.next();
+            if(rs.next()){
+                return gameFromDB(rs);
+            }
         }catch (SQLException ex){
             System.out.println(ex);
         }
         
-        return true;
+        return null;
+    }
+
+    @Override
+    public boolean gameExistAt(int date, int time, int courtIndex) {
+        return getGameAt(date, time, courtIndex) != null;
     }
 
     @Override

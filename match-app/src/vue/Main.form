@@ -539,12 +539,14 @@
         <Component class="javax.swing.JComboBox" name="roundComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="16es"/>
-                <StringItem index="1" value="8es"/>
-                <StringItem index="2" value="quarts"/>
-                <StringItem index="3" value="demis"/>
-                <StringItem index="4" value="finale"/>
+              <StringArray count="7">
+                <StringItem index="0" value="Qualitfications - 8es"/>
+                <StringItem index="1" value="Qualifications - Quarts"/>
+                <StringItem index="2" value="16es"/>
+                <StringItem index="3" value="8es"/>
+                <StringItem index="4" value="Quarts"/>
+                <StringItem index="5" value="Demis"/>
+                <StringItem index="6" value="Finale"/>
               </StringArray>
             </Property>
           </Properties>
