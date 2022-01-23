@@ -56,7 +56,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addMatchDialog = new javax.swing.JDialog();
+        addGameDialog = new javax.swing.JDialog();
         player2ComboBox = new javax.swing.JComboBox<>();
         player1ComboBox = new javax.swing.JComboBox<>();
         player3ComboBox = new javax.swing.JComboBox<>();
@@ -145,8 +145,8 @@ public class Main extends javax.swing.JFrame {
         planningPart2Table = new javax.swing.JTable();
         connectionStatusLabel = new javax.swing.JLabel();
 
-        addMatchDialog.setAlwaysOnTop(true);
-        addMatchDialog.setResizable(false);
+        addGameDialog.setAlwaysOnTop(true);
+        addGameDialog.setResizable(false);
 
         player2ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joureur 1", "Joueur 2", "Joueur 3", "Joueur 4", "Joueur 5", "Joueur 6", "Joueur 7", "Joueur 8" }));
 
@@ -235,14 +235,14 @@ public class Main extends javax.swing.JFrame {
 
         roundComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "16es", "8es", "quarts", "demis", "finale" }));
 
-        javax.swing.GroupLayout addMatchDialogLayout = new javax.swing.GroupLayout(addMatchDialog.getContentPane());
-        addMatchDialog.getContentPane().setLayout(addMatchDialogLayout);
-        addMatchDialogLayout.setHorizontalGroup(
-            addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addMatchDialogLayout.createSequentialGroup()
+        javax.swing.GroupLayout addGameDialogLayout = new javax.swing.GroupLayout(addGameDialog.getContentPane());
+        addGameDialog.getContentPane().setLayout(addGameDialogLayout);
+        addGameDialogLayout.setHorizontalGroup(
+            addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addGameDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addGameDialogLayout.createSequentialGroup()
                         .addComponent(matchDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(matchDateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,7 +250,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(matchTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(matchTimeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                    .addGroup(addGameDialogLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,105 +262,105 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                 .addComponent(matchDateLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                 .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(addMatchDialogLayout.createSequentialGroup()
+            .addGroup(addGameDialogLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(addMatchTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(addMatchDialogLayout.createSequentialGroup()
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+            .addGroup(addGameDialogLayout.createSequentialGroup()
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addGameDialogLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(addMatchDialogLayout.createSequentialGroup()
+                            .addGroup(addGameDialogLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addMatchDialogLayout.createSequentialGroup()
-                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addGameDialogLayout.createSequentialGroup()
+                                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lineRefereeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ballBoyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(addMatchDialogLayout.createSequentialGroup()
-                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addMatchDialogLayout.createSequentialGroup()
+                            .addGroup(addGameDialogLayout.createSequentialGroup()
+                                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addGameDialogLayout.createSequentialGroup()
                                         .addComponent(scoreTeam1Label)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(score1Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(mainRefereeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                    .addGroup(addGameDialogLayout.createSequentialGroup()
                                         .addComponent(scoreTeam2Label)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(score1Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(addGameDialogLayout.createSequentialGroup()
                                         .addComponent(score2Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(score3Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                    .addGroup(addGameDialogLayout.createSequentialGroup()
                                         .addComponent(score2Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(score3Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(addMatchDialogLayout.createSequentialGroup()
+                            .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(addGameDialogLayout.createSequentialGroup()
                                     .addComponent(player3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(player4ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(addMatchDialogLayout.createSequentialGroup()
+                                .addGroup(addGameDialogLayout.createSequentialGroup()
                                     .addComponent(player1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(playerLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(player2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                    .addGroup(addGameDialogLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(confirmAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
                         .addComponent(cancelAddMatchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        addMatchDialogLayout.setVerticalGroup(
-            addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addMatchDialogLayout.createSequentialGroup()
+        addGameDialogLayout.setVerticalGroup(
+            addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addGameDialogLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(addMatchTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(matchDateLabel)
                     .addComponent(matchDateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(matchTimeLabel)
                     .addComponent(matchTimeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(addMatchCourtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(roundLabel)
                     .addComponent(roundComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playerLabel)
                     .addComponent(playerLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addGameDialogLayout.createSequentialGroup()
+                        .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(player1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(player2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(player3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(player4ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(score1Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(scoreTeam1Label)
                             .addComponent(score2Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(score3Team1Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(scoreTeam2Label)
                             .addComponent(score1Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(score2Team2Spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,17 +371,17 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainRefereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lineRefereeLabel)
                     .addComponent(ballBoyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addMatchDialogLayout.createSequentialGroup()
+                .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addGameDialogLayout.createSequentialGroup()
                         .addComponent(lineRefereesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addMatchInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addMatchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(addGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(confirmAddMatchButton)
                             .addComponent(cancelAddMatchButton)))
                     .addComponent(ballBoyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -920,7 +920,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_typeComboBoxActionPerformed
 
     private void cancelAddMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddMatchButtonActionPerformed
-        addMatchDialog.setVisible(false);
+        addGameDialog.setVisible(false);
     }//GEN-LAST:event_cancelAddMatchButtonActionPerformed
 
     private void confirmAddMatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddMatchButtonActionPerformed
@@ -953,16 +953,38 @@ public class Main extends javax.swing.JFrame {
         int score2Team2 = (Integer) score2Team2Spinner.getValue();
         int score3Team2 = (Integer) score3Team2Spinner.getValue();
         
-        Game newGame = new Game(id, date, time, courtIndex, roundIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys);
-        
-        if(editedGame != null){
-            gameDAO.updateGame(newGame);
+        if(gameDAO.gameExistAt(date, time, courtIndex)){
+            addMatchInfoLabel.setText(toErrorString("Un match existe déjà sur cet horraire"));
+        }else if(reservationDAO.reservationExistAt(date, time, courtIndex)){
+            addMatchInfoLabel.setText(toErrorString("Le court est réservé sur cet horraire"));
+        }else if((player3 != null && player4 == null) || (player3 == null && player4 != null)){
+            addMatchInfoLabel.setText(toErrorString("Une équipe n'est pas complètement renseignée"));
+        }else if(player3 == null && player1.equals(player2)){
+            addMatchInfoLabel.setText(toErrorString("Le joueur joue contre lui-même"));
+        }else if(player3 != null && (player1.equals(player2) || player1.equals(player3) || player1.equals(player4) || player2.equals(player3) || player2.equals(player4) || player3.equals(player4))){
+            addMatchInfoLabel.setText(toErrorString("Un joueur est renseigné plusieur fois"));
+        }else if(gameReferees.contains(mainReferee)){
+            addMatchInfoLabel.setText(toErrorString("L'arbitre de chaise ne peut être en même temps un arbitre de ligne"));
+        }else if(gameReferees.size() != 1){
+            addMatchInfoLabel.setText(toErrorString("1 arbitres de ligne doivent être renseignés"));
+        }else if(gameBallBoys.size() != 2){
+            addMatchInfoLabel.setText(toErrorString("2 ramasseurs de balles doivent être renseignés"));
+        }else if(player3 == null && (mainReferee.getNationality().equals(player1.getNationality()) || mainReferee.getNationality().equals(player2.getNationality()))){
+            addMatchInfoLabel.setText(toErrorString("L'arbitre de ligne est de la même nationnalité qu'un des joueurs"));
+        }else if(player3 != null && (mainReferee.getNationality().equals(player1.getNationality()) || mainReferee.getNationality().equals(player2.getNationality()) || mainReferee.getNationality().equals(player3.getNationality()) || mainReferee.getNationality().equals(player4.getNationality()))){
+            addMatchInfoLabel.setText(toErrorString("L'arbitre de ligne est de la même nationnalité qu'un des joueurs"));
         }else{
-            gameDAO.createGame(newGame);
-        }
+            Game newGame = new Game(id, date, time, courtIndex, roundIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys);
         
-        addMatchDialog.setVisible(false);
-        setupMainPanel();
+            if(editedGame != null){
+                gameDAO.updateGame(newGame);
+            }else{
+                gameDAO.createGame(newGame);
+            }
+        
+            addGameDialog.setVisible(false);
+            setupMainPanel();
+        }
     }//GEN-LAST:event_confirmAddMatchButtonActionPerformed
 
     private void courtComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courtComboBoxActionPerformed
@@ -1137,6 +1159,7 @@ public class Main extends javax.swing.JFrame {
         }
         
         ballBoysListPane.setListData(ballBoysData);
+        addMatchInfoLabel.setText("");
         
         if(editedGame != null){
             matchDateComboBox.setSelectedIndex(editedGame.getDate());
@@ -1204,8 +1227,8 @@ public class Main extends javax.swing.JFrame {
             score3Team2Spinner.setValue(0);
         }
         
-        addMatchDialog.setVisible(true);
-        addMatchDialog.setSize(420, 720);
+        addGameDialog.setVisible(true);
+        addGameDialog.setSize(420, 720);
     }
     
     private void setConnectedUserType(String userType, Player player){
@@ -1314,9 +1337,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog addGameDialog;
     private javax.swing.JButton addMatchButton;
     private javax.swing.JComboBox<String> addMatchCourtComboBox;
-    private javax.swing.JDialog addMatchDialog;
     private javax.swing.JLabel addMatchInfoLabel;
     private javax.swing.JLabel addMatchTitleLabel;
     private javax.swing.JButton addSomebodyButton;
