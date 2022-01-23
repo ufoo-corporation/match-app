@@ -39,6 +39,40 @@ public class MySQLReservationDAO implements IReservationDAO {
     }
 
     @Override
+    public boolean reservationExistAt(int date, int time, int courtIndex) {
+        try{
+            PreparedStatement statement = connection.prepareStatement("SELECT id FROM reservation WHERE date = ? and time = ? and court_index = ?");
+            statement.setInt(1, date);
+            statement.setInt(2, time);
+            statement.setInt(3, courtIndex);
+            
+            ResultSet rs = statement.executeQuery();
+            
+            return rs.next();
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        
+        return true;
+    }
+
+    @Override
+    public boolean playerHasReservation(int playerId) {
+        try{
+            PreparedStatement statement = connection.prepareStatement("SELECT id FROM reservation WHERE player = ?");
+            statement.setInt(1, playerId);
+            
+            ResultSet rs = statement.executeQuery();
+            
+            return rs.next();
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        
+        return true;
+    }
+
+    @Override
     public void createReservation(Reservation reservation) {
         try{
             PreparedStatement statement = connection.prepareStatement("INSERT INTO reservation (id, date, time, court_index, player) VALUES (null, ?, ?, ?, ?)");

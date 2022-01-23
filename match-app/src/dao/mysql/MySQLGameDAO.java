@@ -47,6 +47,24 @@ public class MySQLGameDAO implements IGameDAO {
     }
 
     @Override
+    public boolean gameExistAt(int date, int time, int courtIndex) {
+        try{
+            PreparedStatement statement = connection.prepareStatement("SELECT id FROM game WHERE date = ? and time = ? and court_index = ?");
+            statement.setInt(1, date);
+            statement.setInt(2, time);
+            statement.setInt(3, courtIndex);
+            
+            ResultSet rs = statement.executeQuery();
+            
+            return rs.next();
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        
+        return true;
+    }
+
+    @Override
     public void createGame(Game game) {
         try{
             PreparedStatement statement = connection.prepareStatement("INSERT INTO game (id, date, time, court_index, round_index, player1, player2, player3, player4, score_team_1, score_team_2, main_referee) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");

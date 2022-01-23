@@ -7,6 +7,8 @@ import java.sql.Connection;
 public interface IGameDAO {
     public List<Game> getGames(int courtIndex);
     
+    public boolean gameExistAt(int date, int time, int courtIndex);
+    
     public void createGame(Game game);
     
     public void updateGame(Game game);

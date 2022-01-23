@@ -111,7 +111,7 @@ public class Main extends javax.swing.JFrame {
         playerLoginlTextField = new javax.swing.JTextField();
         typeLabel = new javax.swing.JLabel();
         typeComboBox = new javax.swing.JComboBox<>();
-        addMatchInfoLabel1 = new javax.swing.JLabel();
+        addSomebodyInfoLabel = new javax.swing.JLabel();
         generateLoginButton = new javax.swing.JButton();
         saveCourtDialog = new javax.swing.JDialog();
         saveDateLabel = new javax.swing.JLabel();
@@ -132,17 +132,18 @@ public class Main extends javax.swing.JFrame {
         userPassword = new javax.swing.JPasswordField();
         confirmConnectionButton = new javax.swing.JButton();
         cancleConnectionButton = new javax.swing.JButton();
+        connectionInfoLabel = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
         courtComboBox = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
         addMatchButton = new javax.swing.JButton();
         addSomebodyButton = new javax.swing.JButton();
         saveCourtButton = new javax.swing.JButton();
-        addMatchButton1 = new javax.swing.JButton();
+        connectionButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         planningPart1Table = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         planningPart2Table = new javax.swing.JTable();
+        connectionStatusLabel = new javax.swing.JLabel();
 
         addMatchDialog.setAlwaysOnTop(true);
         addMatchDialog.setResizable(false);
@@ -437,7 +438,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        addMatchInfoLabel1.setText("<html><p style=\"color:red;\">Informations si les valeurs rentrées ne sont pas correctes et risquent de dépasser<p><html>");
+        addSomebodyInfoLabel.setText("<html><p style=\"color:red;\">Informations si les valeurs rentrées ne sont pas correctes et risquent de dépasser<p><html>");
 
         generateLoginButton.setText("Générer automatiquement");
 
@@ -454,7 +455,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cancelAddSomebodyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(addMatchInfoLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(addSomebodyInfoLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(passwordField)
                         .addComponent(addSomebodyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,7 +512,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(levelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addMatchInfoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addSomebodyInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addSomebodyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmAddSomebodyButton)
@@ -556,41 +557,36 @@ public class Main extends javax.swing.JFrame {
         saveCourtDialog.getContentPane().setLayout(saveCourtDialogLayout);
         saveCourtDialogLayout.setHorizontalGroup(
             saveCourtDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saveCourtDialogLayout.createSequentialGroup()
-                .addGroup(saveCourtDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, saveCourtDialogLayout.createSequentialGroup()
-                        .addGroup(saveCourtDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(saveCourtDialogLayout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addComponent(saveTitleLabel))
-                            .addGroup(saveCourtDialogLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(saveCourtDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, saveCourtDialogLayout.createSequentialGroup()
-                                        .addComponent(saveCourtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(saveCourtComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(saveCourtDialogLayout.createSequentialGroup()
-                                        .addComponent(saveDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(saveDateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saveTimeLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saveTimeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, saveCourtDialogLayout.createSequentialGroup()
+            .addGroup(saveCourtDialogLayout.createSequentialGroup()
+                .addGroup(saveCourtDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(saveCourtDialogLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(saveTitleLabel))
+                    .addGroup(saveCourtDialogLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(saveCourtDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(saveCourtDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, saveCourtDialogLayout.createSequentialGroup()
+                                .addComponent(saveCourtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveCourtComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(saveCourtDialogLayout.createSequentialGroup()
-                                .addComponent(saveCourtInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGap(121, 121, 121))
-                            .addGroup(saveCourtDialogLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(confirmSaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cancelSaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)))))
+                                .addComponent(saveDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveDateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveTimeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveTimeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(saveCourtDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(confirmSaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelSaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saveCourtDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(saveCourtInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         saveCourtDialogLayout.setVerticalGroup(
@@ -642,6 +638,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        connectionInfoLabel.setText("<html><p style=\"color:red;\">Informations si les valeurs rentrées ne sont pas correctes et risquent de dépasser<p><html>");
+
         javax.swing.GroupLayout connectionDialogLayout = new javax.swing.GroupLayout(connectionDialog.getContentPane());
         connectionDialog.getContentPane().setLayout(connectionDialogLayout);
         connectionDialogLayout.setHorizontalGroup(
@@ -660,7 +658,8 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(confirmConnectionButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cancleConnectionButton)))
-                        .addGap(0, 210, Short.MAX_VALUE)))
+                        .addGap(0, 210, Short.MAX_VALUE))
+                    .addComponent(connectionInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         connectionDialogLayout.setVerticalGroup(
@@ -677,10 +676,12 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(connectionInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(connectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmConnectionButton)
                     .addComponent(cancleConnectionButton))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -699,17 +700,6 @@ public class Main extends javax.swing.JFrame {
                 courtComboBoxActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         addMatchButton.setText("Ajouter un match");
         addMatchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -732,10 +722,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        addMatchButton1.setText("Connexion");
-        addMatchButton1.addActionListener(new java.awt.event.ActionListener() {
+        connectionButton.setText("Connexion");
+        connectionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMatchButton1ActionPerformed(evt);
+                connectionButtonActionPerformed(evt);
             }
         });
 
@@ -816,6 +806,9 @@ public class Main extends javax.swing.JFrame {
             planningPart2Table.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        connectionStatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        connectionStatusLabel.setText("Connection status");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -824,9 +817,6 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(581, 581, 581)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(addMatchButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -840,7 +830,9 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(courtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addMatchButton1)))
+                                .addComponent(connectionStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(connectionButton)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -851,7 +843,9 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(courtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMatchButton1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(connectionButton)
+                        .addComponent(connectionStatusLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -862,9 +856,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(addSomebodyButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveCourtButton)
-                .addGap(13, 13, 13)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -876,6 +868,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_addMatchButtonActionPerformed
 
     private void saveCourtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCourtButtonActionPerformed
+        saveDateComboBox.setSelectedIndex(0);
+        saveTimeComboBox.setSelectedIndex(0);
+        saveCourtComboBox.setSelectedIndex(0);
+        saveCourtInfoLabel.setText("");
+        
         saveCourtDialog.setVisible(true);
         saveCourtDialog.setSize(400, 220);
     }//GEN-LAST:event_saveCourtButtonActionPerformed
@@ -972,13 +969,14 @@ public class Main extends javax.swing.JFrame {
         setupMainPanel();
     }//GEN-LAST:event_courtComboBoxActionPerformed
 
-    private void addMatchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchButton1ActionPerformed
+    private void connectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectionButtonActionPerformed
         userLoginTextField.setText("");
         userPassword.setText("");
+        connectionInfoLabel.setText("");
         
-        connectionDialog.setSize(400, 220);
+        connectionDialog.setSize(400, 260);
         connectionDialog.setVisible(true);
-    }//GEN-LAST:event_addMatchButton1ActionPerformed
+    }//GEN-LAST:event_connectionButtonActionPerformed
 
     private void confirmConnectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmConnectionButtonActionPerformed
         String password = String.valueOf(userPassword.getPassword());
@@ -994,6 +992,8 @@ public class Main extends javax.swing.JFrame {
                 setConnectedUserType("PLAYER", loggedPlayer);
         
                 connectionDialog.setVisible(false);
+            }else{
+                connectionInfoLabel.setText(toErrorString("Le nom d'utilisateur ou le mot de passe n'est pas correct"));
             }
         }       
     }//GEN-LAST:event_confirmConnectionButtonActionPerformed
@@ -1027,10 +1027,18 @@ public class Main extends javax.swing.JFrame {
         int time = saveTimeComboBox.getSelectedIndex();
         int courtIndex = saveCourtComboBox.getSelectedIndex();
         
-        reservationDAO.createReservation(new Reservation(-1, date, time, courtIndex, connectedPlayer));
+        if(reservationDAO.playerHasReservation(connectedPlayer.getId())){
+            saveCourtInfoLabel.setText(toErrorString("Vous avez déjà reservé un terrain"));
+        }else if(gameDAO.gameExistAt(date, time, courtIndex)){
+            saveCourtInfoLabel.setText(toErrorString("Un match a déjà lieu"));
+        }else if(reservationDAO.reservationExistAt(date, time, courtIndex)){
+            saveCourtInfoLabel.setText(toErrorString("Le terrain est déjà reservé"));
+        }else{
+            reservationDAO.createReservation(new Reservation(-1, date, time, courtIndex, connectedPlayer));
         
-        setupMainPanel();
-        saveCourtDialog.setVisible(false);
+            setupMainPanel();
+            saveCourtDialog.setVisible(false);
+        }
     }//GEN-LAST:event_confirmSaveButtonActionPerformed
 
     private void setupMainPanel(){
@@ -1077,7 +1085,7 @@ public class Main extends javax.swing.JFrame {
                     editedReservation = reservation;
                 }
                 
-                if(editedReservation != null && editedReservation.getPlayer().equals(connectedPlayer)){
+                if(editedReservation != null && (editedReservation.getPlayer().equals(connectedPlayer) || connectedUserType.equals("ADMIN"))){
                     int choice = JOptionPane.showConfirmDialog(null, "Annuler la reservation ?", "Annuler la réservation ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                     
                     if(choice == 0){
@@ -1210,6 +1218,17 @@ public class Main extends javax.swing.JFrame {
         addMatchButton.setEnabled(isAdmin);
         addSomebodyButton.setEnabled(isAdmin);
         saveCourtButton.setEnabled(isPlayer);
+        
+        String connectionStatus;
+        if(isAdmin){
+            connectionStatus = "Connecté en tant qu'administrateur";
+        }else if(isPlayer){
+            connectionStatus = String.format("Connecté en tant que %s", connectedPlayer.toDisplayString());
+        }else{
+            connectionStatus = "Non connecté";
+        }
+        
+        connectionStatusLabel.setText(connectionStatus);
     }
     
     private void setupAddSomebodyPanel(){
@@ -1223,6 +1242,11 @@ public class Main extends javax.swing.JFrame {
         generatePasswordButton.setEnabled(isPlayer);
         nationalityComboBox.setEnabled(isPlayer || isReferee);
         levelComboBox.setEnabled(isReferee);
+        addSomebodyInfoLabel.setText("");
+    }
+    
+    private String toErrorString(String s){
+        return String.format("<html><p style='color:red;'>%s</p></html>", s);
     }
     
     /**
@@ -1291,14 +1315,13 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMatchButton;
-    private javax.swing.JButton addMatchButton1;
     private javax.swing.JComboBox<String> addMatchCourtComboBox;
     private javax.swing.JDialog addMatchDialog;
     private javax.swing.JLabel addMatchInfoLabel;
-    private javax.swing.JLabel addMatchInfoLabel1;
     private javax.swing.JLabel addMatchTitleLabel;
     private javax.swing.JButton addSomebodyButton;
     private javax.swing.JDialog addSomebodyDialog;
+    private javax.swing.JLabel addSomebodyInfoLabel;
     private javax.swing.JLabel addSomebodyTitle;
     private javax.swing.JLabel ballBoyLabel;
     private javax.swing.JScrollPane ballBoyScrollPane;
@@ -1311,7 +1334,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton confirmAddSomebodyButton;
     private javax.swing.JButton confirmConnectionButton;
     private javax.swing.JButton confirmSaveButton;
+    private javax.swing.JButton connectionButton;
     private javax.swing.JDialog connectionDialog;
+    private javax.swing.JLabel connectionInfoLabel;
+    private javax.swing.JLabel connectionStatusLabel;
     private javax.swing.JLabel connectionTitleLabel;
     private javax.swing.JComboBox<String> courtComboBox;
     private javax.swing.JLabel firstNameLabel;
@@ -1319,7 +1345,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton generateLoginButton;
     private javax.swing.JButton generatePasswordButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> levelComboBox;

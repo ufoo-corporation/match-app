@@ -7,6 +7,10 @@ import metier.Reservation;
 public interface IReservationDAO {
     public List<Reservation> getReservations(int courtIndex);
     
+    public boolean reservationExistAt(int date, int time, int courtIndex);
+    
+    public boolean playerHasReservation(int playerId);
+    
     public void createReservation(Reservation reservation);
     
     public void deleteReservation(int id);
