@@ -953,9 +953,11 @@ public class Main extends javax.swing.JFrame {
         int score2Team2 = (Integer) score2Team2Spinner.getValue();
         int score3Team2 = (Integer) score3Team2Spinner.getValue();
         
-        if(editedGame == null && gameDAO.gameExistAt(date, time, courtIndex)){
+        Game gameAtThisMoment = gameDAO.getGameAt(date, time, courtIndex);
+        
+        if(editedGame == null && gameAtThisMoment != null){
             addMatchInfoLabel.setText(toErrorString("Un match existe déjà sur cet horraire"));
-        }else if(editedGame != null && gameDAO.getGameAt(date, time, courtIndex) != null && gameDAO.getGameAt(date, time, courtIndex).getId() != editedGame.getId()){
+        }else if(editedGame != null && gameAtThisMoment != null && gameAtThisMoment.getId() != editedGame.getId()){
             addMatchInfoLabel.setText(toErrorString("Un match existe déjà sur cet horraire"));
         }else if(reservationDAO.reservationExistAt(date, time, courtIndex)){
             addMatchInfoLabel.setText(toErrorString("Le court est réservé sur cet horraire"));
