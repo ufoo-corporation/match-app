@@ -955,6 +955,28 @@ public class Main extends javax.swing.JFrame {
         
         Game gameAtThisMoment = gameDAO.getGameAt(date, time, courtIndex);
         
+        List<Player> busyPlayers = new ArrayList<>();
+        List<Referee> busyReferees = new ArrayList<>();
+        List<BallBoy> busyBallBoys = new ArrayList<>();
+        
+        getBusyPeopleAt(date, time, courtIndex, busyPlayers, busyReferees, busyBallBoys);
+        
+        boolean oneOrMoreRefereeIsBusy = false;
+        
+        for(Referee referee : gameReferees){
+            if(busyReferees.contains(referee)){
+                oneOrMoreRefereeIsBusy = true;
+            }
+        }
+        
+        boolean oneOrMoreBallBoyIsBusy = false;
+        
+        for(BallBoy ballBoy : gameBallBoys){
+            if(busyBallBoys.contains(ballBoy)){
+                oneOrMoreBallBoyIsBusy = true;
+            }
+        }
+        
         if(editedGame == null && gameAtThisMoment != null){
             addMatchInfoLabel.setText(toErrorString("Un match existe déjà sur cet horraire"));
         }else if(editedGame != null && gameAtThisMoment != null && gameAtThisMoment.getId() != editedGame.getId()){
@@ -979,6 +1001,30 @@ public class Main extends javax.swing.JFrame {
             addMatchInfoLabel.setText(toErrorString("L'arbitre de ligne est de la même nationnalité qu'un des joueurs"));
         }else if(player3 != null && (mainReferee.getNationality().equals(player1.getNationality()) || mainReferee.getNationality().equals(player2.getNationality()) || mainReferee.getNationality().equals(player3.getNationality()) || mainReferee.getNationality().equals(player4.getNationality()))){
             addMatchInfoLabel.setText(toErrorString("L'arbitre de ligne est de la même nationnalité qu'un des joueurs"));
+        }else if(busyPlayers.contains(player1)){
+            addMatchInfoLabel.setText(toErrorString(String.format("Le joueur %s participe déjà à un match sur ce créneau", player1.toDisplayString())));
+        }else if(busyPlayers.contains(player2)){
+            addMatchInfoLabel.setText(toErrorString(String.format("Le joueur %s participe déjà à un match sur ce créneau", player2.toDisplayString())));
+        }else if(player3 != null && busyPlayers.contains(player3)){
+            addMatchInfoLabel.setText(toErrorString(String.format("Le joueur %s participe déjà à un match sur ce créneau", player3.toDisplayString())));
+        }else if(player4 != null && busyPlayers.contains(player4)){
+            addMatchInfoLabel.setText(toErrorString(String.format("Le joueur %s participe déjà à un match sur ce créneau", player4.toDisplayString())));
+        }else if(busyReferees.contains(mainReferee)){
+            addMatchInfoLabel.setText(toErrorString(String.format("L'arbitre de chaise participe déjà à un match sur ce créneau")));
+        }else if(oneOrMoreRefereeIsBusy){
+            for(Referee referee : gameReferees){
+                if(busyReferees.contains(referee)){
+                    addMatchInfoLabel.setText(toErrorString(String.format("L'arbitre de ligne %s participe déjà à un match sur ce créneau", referee.toDisplayString())));
+                    break;
+                }
+            }
+        }else if(oneOrMoreBallBoyIsBusy){
+            for(BallBoy ballBoy : gameBallBoys){
+                if(busyBallBoys.contains(ballBoy)){
+                    addMatchInfoLabel.setText(toErrorString(String.format("Le rammasseur de balle %s participe déjà à un match sur ce créneau", ballBoy.toDisplayString())));
+                    break;
+                }
+            }
         }else{
             Game newGame = new Game(id, date, time, courtIndex, roundIndex, player1, player2, player3, player4, score1Team1, score2Team1, score3Team1, score1Team2, score2Team2, score3Team2, mainReferee, gameReferees, gameBallBoys);
         
@@ -1276,6 +1322,25 @@ public class Main extends javax.swing.JFrame {
     
     private String toErrorString(String s){
         return String.format("<html><p style='color:red;'>%s</p></html>", s);
+    }
+    
+    private void getBusyPeopleAt(int date, int time, int courtIndex, List<Player> busyPlayers, List<Referee> busyReferees, List<BallBoy> busyBallBoys){
+        List<Game> otherGamesAtThisMoment = gameDAO.getGamesAtThatMoment(date, time, courtIndex);
+        
+        for(Game game : otherGamesAtThisMoment){
+            busyPlayers.add(game.getPlayer1());
+            busyPlayers.add(game.getPlayer2());
+            
+            if(game.getPlayer3() != null){
+                busyPlayers.add(game.getPlayer3());
+                busyPlayers.add(game.getPlayer4());
+            }
+            
+            busyReferees.add(game.getMainReferee());
+            busyReferees.addAll(refereeOfGameDAO.getRefereesOfGame(game.getId()));
+            
+            busyBallBoys.addAll(ballBoyOfGameDAO.getBallBoysOfGame(game.getId()));
+        }
     }
     
     /**

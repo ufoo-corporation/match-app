@@ -47,6 +47,30 @@ public class MySQLGameDAO implements IGameDAO {
     }
 
     @Override
+    public List<Game> getGamesAtThatMoment(int date, int time, int courtIndexToNotCheck) {
+        try{
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM game WHERE date = ? and time = ? and court_index != ?");
+            statement.setInt(1, date);
+            statement.setInt(2, time);
+            statement.setInt(3, courtIndexToNotCheck);
+            
+            ResultSet rs = statement.executeQuery();
+            
+            List<Game> result = new ArrayList<>();
+            
+            while(rs.next()){
+                result.add(gameFromDB(rs));
+            }
+            
+            return result;
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        
+        return null;
+    }
+
+    @Override
     public Game getGameAt(int date, int time, int courtIndex) {
         try{
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM game WHERE date = ? and time = ? and court_index = ?");
